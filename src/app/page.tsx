@@ -12,9 +12,8 @@ export default function HomePage() {
     const content = contentRef.current;
     if (!container || !content) return;
 
-    const { height } = content.getBoundingClientRect();
     const welcomeHeight =
-      content.firstElementChild?.getBoundingClientRect().height || 0;
+      content.firstElementChild?.getBoundingClientRect().height ?? 0;
     let scrollPosition = 0;
     content.style.transform = `translateY(${-scrollPosition}px)`;
 
