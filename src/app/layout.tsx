@@ -16,8 +16,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "paul-jasper sahr",
-  description: "personal website",
+  title: "Paul's Page",
+  description:
+    "Paul's personal website of showing his projects and experiences",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
