@@ -52,9 +52,21 @@ export default function HomePage() {
     <main ref={containerRef} className="infinite-scroll">
       <div ref={contentRef} className="content-block">
         <Welcome />
-        <Section title="About" description="About me" />
-        <Section title="Projects" description="Projects I've worked on" />
-        <Section title="Contact" description="Contact me" />
+        <Section
+          title="About"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
+          date="2012 - 2018"
+        />
+        <Section
+          title="Projects"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum consectetur amet blanditiis dolorem quo expedita accusamus corporis deserunt, repudiandae perspiciatis optio dignissimos."
+          date="2018 - 2020"
+        />
+        <Section
+          title="Contact"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
+          date="2020 - Present"
+        />
         <Welcome />
       </div>
     </main>
