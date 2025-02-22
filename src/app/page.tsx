@@ -12,8 +12,13 @@ export default function HomePage() {
     const content = contentRef.current;
     if (!container || !content) return;
 
-    const welcomeHeight =
-      content.firstElementChild?.getBoundingClientRect().height ?? 0;
+    // Get the height of one complete cycle (all components before the repeated Welcome)
+    const cycleHeight = Array.from(content.children)
+      .slice(0, -1) // Exclude the last Welcome component
+      .reduce((total, element) => {
+        return total + element.getBoundingClientRect().height;
+      }, 0);
+
     let scrollPosition = 0;
     content.style.transform = `translateY(${-scrollPosition}px)`;
 
@@ -21,14 +26,12 @@ export default function HomePage() {
 
     const updatePosition = () => {
       if (!container || !content) return;
-      const { height } = content.getBoundingClientRect();
-      const contentHeight = height - welcomeHeight; // Total height minus one Welcome section
 
-      // Normalize scroll position
+      // Normalize scroll position using cycleHeight instead of contentHeight
       if (scrollPosition < 0) {
-        scrollPosition = contentHeight + (scrollPosition % contentHeight);
-      } else if (scrollPosition > contentHeight) {
-        scrollPosition = scrollPosition % contentHeight;
+        scrollPosition = cycleHeight + (scrollPosition % cycleHeight);
+      } else if (scrollPosition > cycleHeight) {
+        scrollPosition = scrollPosition % cycleHeight;
       }
 
       content.style.transform = `translateY(${-scrollPosition}px)`;
