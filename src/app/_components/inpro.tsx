@@ -61,7 +61,7 @@ const Inpro = () => {
       date="since 08/2020"
       content={
         <Carousel
-          className="w-full max-w-[50%]"
+          className="w-full max-w-[90%]"
           opts={{
             align: "start",
             loop: true,
@@ -86,8 +86,8 @@ const Inpro = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden sm:group-hover:flex" />
-          <CarouselNext className="hidden sm:group-hover:flex" />
+          <CarouselPrevious className="" />
+          <CarouselNext className="" />
         </Carousel>
       }
     />

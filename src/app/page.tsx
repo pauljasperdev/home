@@ -11,12 +11,14 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import Welcome from "./_components/welcome";
 import Section from "./_components/section";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Inpro from "./_components/inpro";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const welcomeRef = useRef<HTMLDivElement>(null);
+  const [welcomeLeft, setWelcomeLeft] = useState(0);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -62,37 +64,57 @@ export default function HomePage() {
     return () => container.removeEventListener("wheel", handleWheel);
   }, []);
 
+  useEffect(() => {
+    // Add welcome position calculation
+    const updateWelcomePosition = () => {
+      if (welcomeRef.current) {
+        const rect = welcomeRef.current.getBoundingClientRect();
+        setWelcomeLeft(rect.left);
+      }
+    };
+
+    updateWelcomePosition();
+    window.addEventListener("resize", updateWelcomePosition);
+    return () => window.removeEventListener("resize", updateWelcomePosition);
+  }, []);
+
   return (
     <main ref={containerRef} className="infinite-scroll">
       <div ref={contentRef} className="content-block">
-        <Welcome />
-        <Inpro />
+        <Welcome ref={welcomeRef} />
+        <div
+          style={{ paddingLeft: `${welcomeLeft}px` }}
+          className="flex flex-col gap-56 pr-28"
+        >
+          <Inpro />
+          <Section
+            title="Indie Hacking"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum consectetur amet blanditiis dolorem quo expedita accusamus corporis deserunt, repudiandae perspiciatis optio dignissimos."
+            date="2018 - 2020"
+            content={
+              <Card>
+                <CardContent className="flex items-center justify-center p-6">
+                  <span className="text-4xl font-semibold">{1}</span>
+                </CardContent>
+              </Card>
+            }
+          />
 
-        <Section
-          title="Indie Hacking"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum consectetur amet blanditiis dolorem quo expedita accusamus corporis deserunt, repudiandae perspiciatis optio dignissimos."
-          date="2018 - 2020"
-          content={
-            <Card>
-              <CardContent className="flex items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{1}</span>
-              </CardContent>
-            </Card>
-          }
-        />
-
-        <Section
-          title="University"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
-          date="2020 - Present"
-          content={
-            <Card>
-              <CardContent className="flex items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{"masterthesis"}</span>
-              </CardContent>
-            </Card>
-          }
-        />
+          <Section
+            title="University"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
+            date="2020 - Present"
+            content={
+              <Card>
+                <CardContent className="flex items-center justify-center p-6">
+                  <span className="text-4xl font-semibold">
+                    {"masterthesis"}
+                  </span>
+                </CardContent>
+              </Card>
+            }
+          />
+        </div>
         <Welcome />
       </div>
     </main>
