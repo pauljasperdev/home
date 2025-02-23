@@ -1,20 +1,13 @@
-import { Card, CardContent } from "~/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "~/components/ui/carousel";
-
 const Section = ({
   title,
   description,
   date,
+  content,
 }: {
-  title: string;
-  description: string;
-  date: string;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  date: React.ReactNode;
+  content: React.ReactNode;
 }) => {
   return (
     <div className="flex h-96 w-full flex-col">
@@ -28,31 +21,7 @@ const Section = ({
         </p>
       </div>
       <div className="group flex w-full items-center justify-center">
-        <Carousel
-          className="w-full max-w-[90%]"
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-        >
-          <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <Card>
-                    <CardContent className="flex items-center justify-center p-6">
-                      <span className="text-4xl font-semibold">
-                        {index + 1}
-                      </span>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden sm:group-hover:flex" />
-          <CarouselNext className="hidden sm:group-hover:flex" />
-        </Carousel>
+        {content}
       </div>
     </div>
   );

@@ -1,7 +1,18 @@
 "use client";
+
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "~/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import Welcome from "./_components/welcome";
 import Section from "./_components/section";
 import { useEffect, useRef } from "react";
+import Inpro from "./_components/inpro";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -55,20 +66,32 @@ export default function HomePage() {
     <main ref={containerRef} className="infinite-scroll">
       <div ref={contentRef} className="content-block">
         <Welcome />
+        <Inpro />
+
         <Section
-          title="About"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
-          date="2012 - 2018"
-        />
-        <Section
-          title="Projects"
+          title="Indie Hacking"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum consectetur amet blanditiis dolorem quo expedita accusamus corporis deserunt, repudiandae perspiciatis optio dignissimos."
           date="2018 - 2020"
+          content={
+            <Card>
+              <CardContent className="flex items-center justify-center p-6">
+                <span className="text-4xl font-semibold">{1}</span>
+              </CardContent>
+            </Card>
+          }
         />
+
         <Section
-          title="Contact"
+          title="University"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
           date="2020 - Present"
+          content={
+            <Card>
+              <CardContent className="flex items-center justify-center p-6">
+                <span className="text-4xl font-semibold">{"masterthesis"}</span>
+              </CardContent>
+            </Card>
+          }
         />
         <Welcome />
       </div>
