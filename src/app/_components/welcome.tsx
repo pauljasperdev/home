@@ -2,13 +2,10 @@ import React from "react";
 import { Button } from "~/components/ui/button";
 import Xicon from "./Xicon";
 
-const Welcome = React.forwardRef<HTMLDivElement>((props, ref) => {
+const Welcome = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div
-        ref={ref}
-        className="flex flex-col items-start justify-center space-y-8"
-      >
+    <div className="flex min-h-screen items-center justify-start">
+      <div className="flex flex-col items-start justify-center space-y-8">
         <h1 className="text-5xl">Welcome Traveller</h1>
         <div className="flex w-full flex-col items-start justify-start space-y-4">
           <h2 className="text-3xl font-light">{"I'm Paul Jasper."}</h2>
@@ -33,8 +30,6 @@ const Welcome = React.forwardRef<HTMLDivElement>((props, ref) => {
       </div>
     </div>
   );
-});
-
-Welcome.displayName = "Welcome";
+};
 
 export default Welcome;

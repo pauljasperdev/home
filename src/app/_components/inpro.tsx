@@ -15,26 +15,36 @@ const Inpro = () => {
       title: "Rule Mining",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
+      technologies: "Nuxt, TypeScript, Python, AWS, SST, SQL, GenAI",
+      date: "since 01/2025",
     },
     {
       title: "Factory Chatbot",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
+      technologies: "Nuxt, TypeScript, Python, AWS, CDK, SQL, GenAI",
+      date: "01/2024 - 12/2024",
     },
     {
       title: "Text2Tech",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
+      technologies: "React, TypeScript, Rest",
+      date: "since 10/2023",
     },
     {
       title: "Virtual Process Chain",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
+      technologies: "C++, Qt, cmake",
+      date: "08/2020 - 10/2023",
     },
     {
       title: "hypro",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
+      date: "08/2020 - 07/2022",
+      technologies: "C++, Python, Qt, cmake",
     },
   ];
 
@@ -76,11 +86,17 @@ const Inpro = () => {
           <CarouselContent>
             {inproProjects.map((project, index) => (
               <CarouselItem key={index}>
-                <Card>
-                  <CardTitle className="p-6">{project.title}</CardTitle>
+                <Card className="border-none">
+                  <CardTitle className="py-4 text-zinc-200">
+                    {project.title}
+                  </CardTitle>
 
-                  <CardContent className="text-sm font-extralight">
-                    {project.description}
+                  <CardContent className="space-y-2 px-0 text-sm font-extralight text-zinc-200">
+                    <p>{project.description}</p>
+                    <p className="text-xs text-zinc-400">
+                      {project.technologies}
+                    </p>
+                    <p className="text-xs text-zinc-400">{project.date}</p>
                   </CardContent>
                 </Card>
               </CarouselItem>
