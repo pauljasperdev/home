@@ -15,21 +15,21 @@ const Inpro = () => {
       title: "Rule Mining",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
-      technologies: "Nuxt, TypeScript, Python, AWS, SST, SQL, GenAI",
+      technologies: "Nextjs, TypeScript, Python, AWS, SST, SQL, GenAI",
       date: "since 01/2025",
     },
     {
       title: "Factory Chatbot",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
-      technologies: "Nuxt, TypeScript, Python, AWS, CDK, SQL, GenAI",
+      technologies: "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, GenAI",
       date: "01/2024 - 12/2024",
     },
     {
       title: "Text2Tech",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia.",
-      technologies: "React, TypeScript, Rest",
+      technologies: "React, TypeScript",
       date: "since 10/2023",
     },
     {
@@ -70,41 +70,23 @@ const Inpro = () => {
       }
       date="since 08/2020"
       content={
-        <Carousel
-          className="w-full max-w-[90%]"
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          plugins={[
-            Autoplay({
-              delay: 5000,
-              stopOnMouseEnter: true,
-            }),
-          ]}
-        >
-          <CarouselContent>
-            {inproProjects.map((project, index) => (
-              <CarouselItem key={index}>
-                <Card className="border-none">
-                  <CardTitle className="py-4 text-zinc-200">
-                    {project.title}
-                  </CardTitle>
-
-                  <CardContent className="space-y-2 px-0 text-sm font-extralight text-zinc-200">
-                    <p>{project.description}</p>
-                    <p className="text-xs text-zinc-400">
-                      {project.technologies}
-                    </p>
-                    <p className="text-xs text-zinc-400">{project.date}</p>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="" />
-          <CarouselNext className="" />
-        </Carousel>
+        <div className="flex min-h-[70vh] w-full max-w-[70%] flex-col">
+          {inproProjects.map((project) => (
+            <div className="py-4">
+              <div className="flex flex-col items-center space-y-2 px-8 sm:items-start sm:px-0">
+                <h3 className="text-left text-xl text-zinc-300">
+                  {project.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-zinc-400 sm:w-[90%]">
+                  {project.description}
+                </p>
+              </div>
+              <div className="group flex w-full items-center justify-center font-extralight text-zinc-400 sm:items-start sm:justify-normal">
+                {project.technologies}
+              </div>
+            </div>
+          ))}
+        </div>
       }
     />
   );

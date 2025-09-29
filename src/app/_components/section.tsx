@@ -12,7 +12,7 @@ const Section = ({
   return (
     <div className="flex min-h-[70vh] w-full flex-col gap-4">
       <div className="flex flex-col items-center space-y-2 px-8 sm:items-start sm:px-0">
-        <h2 className="text-left text-2xl">{title}</h2>
+        <h2 className="text-left text-4xl text-zinc-300">{title}</h2>
         <p className="text-sm leading-relaxed text-zinc-400 sm:w-[90%]">
           {description}
         </p>
