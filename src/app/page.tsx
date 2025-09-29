@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 import Welcome from "./_components/welcome";
 import Section from "./_components/section";
 import { useEffect, useRef } from "react";
@@ -63,8 +63,17 @@ export default function HomePage() {
     // Initial measurement
     recalcHeights();
 
-    const handleWheel = (e: WheelEvent) => {
-      scrollPosition += e.deltaY;
+    const wheelListenerOptions: AddEventListenerOptions = { passive: true };
+    const touchStartListenerOptions: AddEventListenerOptions = {
+      passive: true,
+    };
+    const touchMoveListenerOptions: AddEventListenerOptions = {
+      passive: false,
+    };
+
+    const handleWheel: EventListener = (event) => {
+      const wheelEvent = event as WheelEvent;
+      scrollPosition += wheelEvent.deltaY;
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(updateTransform);
@@ -72,28 +81,34 @@ export default function HomePage() {
     };
 
     let lastTouchY = 0;
-    const handleTouchStart = (e: TouchEvent) => {
-      lastTouchY = e.touches[0]?.clientY ?? 0;
+    const handleTouchStart: EventListener = (event) => {
+      const touchEvent = event as TouchEvent;
+      lastTouchY = touchEvent.touches[0]?.clientY ?? 0;
     };
-    const handleTouchMove = (e: TouchEvent) => {
-      const currentY = e.touches[0]?.clientY ?? 0;
+    const handleTouchMove: EventListener = (event) => {
+      const touchEvent = event as TouchEvent;
+      const currentY = touchEvent.touches[0]?.clientY ?? 0;
       const dy = lastTouchY - currentY; // match wheel: positive dy scrolls down
       lastTouchY = currentY;
       scrollPosition += dy;
-      e.preventDefault();
+      touchEvent.preventDefault();
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(updateTransform);
       }
     };
 
-    container.addEventListener("wheel", handleWheel, { passive: true });
-    container.addEventListener("touchstart", handleTouchStart, {
-      passive: true,
-    });
-    container.addEventListener("touchmove", handleTouchMove, {
-      passive: false,
-    });
+    container.addEventListener("wheel", handleWheel, wheelListenerOptions);
+    container.addEventListener(
+      "touchstart",
+      handleTouchStart,
+      touchStartListenerOptions,
+    );
+    container.addEventListener(
+      "touchmove",
+      handleTouchMove,
+      touchMoveListenerOptions,
+    );
 
     const ro = new ResizeObserver(() => {
       recalcHeights();
@@ -104,9 +119,17 @@ export default function HomePage() {
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
-      container.removeEventListener("wheel", handleWheel as any);
-      container.removeEventListener("touchstart", handleTouchStart as any);
-      container.removeEventListener("touchmove", handleTouchMove as any);
+      container.removeEventListener("wheel", handleWheel, wheelListenerOptions);
+      container.removeEventListener(
+        "touchstart",
+        handleTouchStart,
+        touchStartListenerOptions,
+      );
+      container.removeEventListener(
+        "touchmove",
+        handleTouchMove,
+        touchMoveListenerOptions,
+      );
       window.removeEventListener("resize", handleWindowResize);
       ro.disconnect();
     };

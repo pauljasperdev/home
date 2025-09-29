@@ -1,13 +1,4 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "~/components/ui/carousel";
 import Section from "./section";
-import Autoplay from "embla-carousel-autoplay";
-import { Card, CardContent, CardTitle } from "~/components/ui/card";
 
 const Inpro = () => {
   const inproProjects = [
@@ -72,7 +63,7 @@ const Inpro = () => {
       content={
         <div className="flex min-h-[70vh] w-full max-w-[70%] flex-col">
           {inproProjects.map((project) => (
-            <div className="py-4">
+            <div key={project.title} className="py-4">
               <div className="flex flex-col items-center space-y-2 px-8 sm:items-start sm:px-0">
                 <h3 className="text-left text-xl text-zinc-300">
                   {project.title}
