@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import Welcome from "./_components/welcome";
 import Section from "./_components/section";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Inpro from "./_components/inpro";
 
 export default function HomePage() {
@@ -15,48 +15,107 @@ export default function HomePage() {
     const content = contentRef.current;
     if (!container || !content) return;
 
-    // Get the height of one complete cycle (all components before the repeated Welcome)
-    const cycleHeight = Array.from(content.children)
-      .slice(0, -1) // Exclude the last Welcome component
-      .reduce((total, element) => {
-        return total + element.getBoundingClientRect().height;
-      }, 0);
-
     let scrollPosition = 0;
-    content.style.transform = `translateY(${-scrollPosition}px)`;
-
+    let cycleHeight = 0;
     let ticking = false;
 
-    const updatePosition = () => {
-      if (!container || !content) return;
-
-      // Normalize scroll position using cycleHeight instead of contentHeight
-      if (scrollPosition < 0) {
-        scrollPosition = cycleHeight + (scrollPosition % cycleHeight);
-      } else if (scrollPosition > cycleHeight) {
-        scrollPosition = scrollPosition % cycleHeight;
+    const getCycleHeight = () => {
+      const children = Array.from(content.children);
+      const half = Math.floor(children.length / 2);
+      let total = 0;
+      for (let i = 0; i < half; i++) {
+        const el = children[i] as HTMLElement;
+        total += el.getBoundingClientRect().height;
       }
+      return total;
+    };
 
+    const updateTransform = () => {
+      if (!content || cycleHeight <= 0) {
+        ticking = false;
+        return;
+      }
+      // Normalize into [0, cycleHeight)
+      scrollPosition =
+        ((scrollPosition % cycleHeight) + cycleHeight) % cycleHeight;
       content.style.transform = `translateY(${-scrollPosition}px)`;
       ticking = false;
     };
 
-    const handleWheel = (e: WheelEvent) => {
-      scrollPosition += e.deltaY;
-
+    const recalcHeights = () => {
+      const prev = cycleHeight;
+      const next = getCycleHeight();
+      if (next <= 0) return;
+      if (prev === 0) {
+        cycleHeight = next;
+      } else {
+        const normalized = ((scrollPosition % prev) + prev) % prev;
+        const ratio = normalized / prev;
+        cycleHeight = next;
+        scrollPosition = ratio * cycleHeight;
+      }
       if (!ticking) {
-        requestAnimationFrame(updatePosition);
         ticking = true;
+        requestAnimationFrame(updateTransform);
       }
     };
 
-    container.addEventListener("wheel", handleWheel);
-    return () => container.removeEventListener("wheel", handleWheel);
+    // Initial measurement
+    recalcHeights();
+
+    const handleWheel = (e: WheelEvent) => {
+      scrollPosition += e.deltaY;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateTransform);
+      }
+    };
+
+    let lastTouchY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      lastTouchY = e.touches[0]?.clientY ?? 0;
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      const currentY = e.touches[0]?.clientY ?? 0;
+      const dy = lastTouchY - currentY; // match wheel: positive dy scrolls down
+      lastTouchY = currentY;
+      scrollPosition += dy;
+      e.preventDefault();
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateTransform);
+      }
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: true });
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+
+    const ro = new ResizeObserver(() => {
+      recalcHeights();
+    });
+    ro.observe(content);
+
+    const handleWindowResize = () => recalcHeights();
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      container.removeEventListener("wheel", handleWheel as any);
+      container.removeEventListener("touchstart", handleTouchStart as any);
+      container.removeEventListener("touchmove", handleTouchMove as any);
+      window.removeEventListener("resize", handleWindowResize);
+      ro.disconnect();
+    };
   }, []);
 
   return (
     <main ref={containerRef} className="infinite-scroll">
       <div ref={contentRef} className="content-block gap-96 p-56">
+        {/* Cycle 1 */}
         <Welcome />
         <Inpro />
         <Section
@@ -71,7 +130,6 @@ export default function HomePage() {
             </Card>
           }
         />
-
         <Section
           title="University"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
@@ -84,7 +142,34 @@ export default function HomePage() {
             </Card>
           }
         />
+
+        {/* Cycle 2 (duplicate) */}
         <Welcome />
+        <Inpro />
+        <Section
+          title="Indie Hacking"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum consectetur amet blanditiis dolorem quo expedita accusamus corporis deserunt, repudiandae perspiciatis optio dignissimos."
+          date="2018 - 2020"
+          content={
+            <Card>
+              <CardContent className="flex items-center justify-center p-6">
+                <span className="text-4xl font-semibold">{1}</span>
+              </CardContent>
+            </Card>
+          }
+        />
+        <Section
+          title="University"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
+          date="2020 - Present"
+          content={
+            <Card>
+              <CardContent className="flex items-center justify-center p-6">
+                <span className="text-4xl font-semibold">{"masterthesis"}</span>
+              </CardContent>
+            </Card>
+          }
+        />
       </div>
     </main>
   );
