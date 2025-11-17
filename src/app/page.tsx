@@ -4,7 +4,8 @@ import { Card, CardContent } from "~/components/ui/card";
 import Welcome from "./_components/welcome";
 import Section from "./_components/section";
 import { useEffect, useRef } from "react";
-import Inpro from "./_components/inpro";
+import Experience from "./_components/experience";
+import Education from "./_components/education";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -140,59 +141,13 @@ export default function HomePage() {
       <div ref={contentRef} className="content-block gap-96 p-56">
         {/* Cycle 1 */}
         <Welcome />
-        <Inpro />
-        <Section
-          title="Indie Hacking"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum consectetur amet blanditiis dolorem quo expedita accusamus corporis deserunt, repudiandae perspiciatis optio dignissimos."
-          date="2018 - 2020"
-          content={
-            <Card>
-              <CardContent className="flex items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{1}</span>
-              </CardContent>
-            </Card>
-          }
-        />
-        <Section
-          title="University"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
-          date="2020 - Present"
-          content={
-            <Card>
-              <CardContent className="flex items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{"masterthesis"}</span>
-              </CardContent>
-            </Card>
-          }
-        />
+        <Experience />
+        <Education />
 
         {/* Cycle 2 (duplicate) */}
         <Welcome />
-        <Inpro />
-        <Section
-          title="Indie Hacking"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum consectetur amet blanditiis dolorem quo expedita accusamus corporis deserunt, repudiandae perspiciatis optio dignissimos."
-          date="2018 - 2020"
-          content={
-            <Card>
-              <CardContent className="flex items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{1}</span>
-              </CardContent>
-            </Card>
-          }
-        />
-        <Section
-          title="University"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos dolores expedita voluptatibus nam repellendus minus temporibus accusantium, deserunt perspiciatis beatae adipisci mollitia."
-          date="2020 - Present"
-          content={
-            <Card>
-              <CardContent className="flex items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{"masterthesis"}</span>
-              </CardContent>
-            </Card>
-          }
-        />
+        <Experience />
+        <Education />
       </div>
     </main>
   );
