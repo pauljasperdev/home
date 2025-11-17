@@ -67,35 +67,37 @@ const Inpro = () => {
       }
       date=""
       content={
-        <div className="flex min-h-[70vh] w-full max-w-[90%] flex-col">
+        <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
           {inproProjects.map((company) => (
             <div key={company.company} className="mb-8">
-              <h2 className="mb-6 text-left text-4xl text-zinc-300">
+              <h2 className="mb-6 text-left text-2xl text-zinc-300 sm:text-3xl md:text-4xl">
                 <a href={company.link} target="_blank">
                   {company.company}
                 </a>
               </h2>
               {company.positions.map((position) => (
                 <div key={position.title} className="mb-6">
-                  <h3 className="mb-4 text-3xl text-zinc-300">
+                  <h3 className="mb-4 text-xl text-zinc-300 sm:text-2xl md:text-3xl">
                     <div className="flex w-full flex-col justify-between">
-                      <span className="text-2xl">{position.title}</span>
-                      <span className="text-base font-extralight leading-relaxed text-zinc-300">
+                      <span className="text-lg sm:text-xl md:text-2xl">
+                        {position.title}
+                      </span>
+                      <span className="text-sm font-extralight leading-relaxed text-zinc-300 sm:text-base">
                         {position.date}
                       </span>
                     </div>
                   </h3>
                   {position.projects.map((project) => (
-                    <div key={project.title} className="py-4 pl-4">
-                      <div className="flex flex-col items-center space-y-2 px-8 py-1 sm:items-start sm:px-0">
-                        <h4 className="text-left text-lg text-zinc-300">
+                    <div key={project.title} className="py-4 pl-0 sm:pl-4">
+                      <div className="flex flex-col items-center space-y-2 px-4 py-1 sm:items-start sm:px-0">
+                        <h4 className="text-left text-base text-zinc-300 sm:text-lg">
                           {project.title}
                         </h4>
-                        <p className="text-base leading-relaxed text-zinc-400 sm:w-[90%]">
+                        <p className="w-full text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
                           {project.description}
                         </p>
                       </div>
-                      <div className="group flex w-full items-center justify-center font-mono text-base text-zinc-300 sm:items-start sm:justify-normal">
+                      <div className="group flex w-full items-center justify-center px-4 font-mono text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
                         {project.technologies}
                       </div>
                     </div>

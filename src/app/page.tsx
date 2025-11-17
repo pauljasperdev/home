@@ -138,7 +138,10 @@ export default function HomePage() {
 
   return (
     <main ref={containerRef} className="infinite-scroll">
-      <div ref={contentRef} className="content-block gap-96 p-56">
+      <div
+        ref={contentRef}
+        className="content-block gap-24 p-8 sm:gap-48 sm:p-24 md:gap-96 md:p-56"
+      >
         {/* Cycle 1 */}
         <Welcome />
         <Experience />
