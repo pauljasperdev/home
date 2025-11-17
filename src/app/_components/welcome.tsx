@@ -3,6 +3,7 @@ import { Button } from "~/components/ui/button";
 import Xicon from "./Xicon";
 import { Mail } from "lucide-react";
 import Blueskyicon from "./Blueskyicon";
+import Link from "next/link";
 
 const Welcome = () => {
   return (
@@ -19,7 +20,7 @@ const Welcome = () => {
               className="w-20 rounded-full"
               asChild
             >
-              <a
+              <Link
                 href="https://bsky.app/profile/pauljasper.dev"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -27,7 +28,7 @@ const Welcome = () => {
               >
                 <Blueskyicon className="size-6" />
                 {/* pauljasper.dev */}
-              </a>
+              </Link>
             </Button>
             <Button
               variant="link2"
@@ -35,7 +36,7 @@ const Welcome = () => {
               className="w-20 rounded-full"
               asChild
             >
-              <a
+              <Link
                 href="mailto:Paul-Jasper%20Sahr%20<mail@pauljasper.dev>?subject=Hello%20Paul"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -43,7 +44,7 @@ const Welcome = () => {
               >
                 <Mail className="size-6" />
                 {/* mail@pauljasper.dev */}
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
