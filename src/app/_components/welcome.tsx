@@ -3,6 +3,7 @@ import { Button } from "~/components/ui/button";
 import { Mail } from "lucide-react";
 import Blueskyicon from "./Blueskyicon";
 import Link from "next/link";
+import Image from "next/image";
 
 const Welcome = () => {
   return (
@@ -50,6 +51,13 @@ const Welcome = () => {
           </div>
         </div>
       </div>
+      {/* <Image
+        className="rounded-full"
+        src="/favicon.ico"
+        alt="Paul Jasper"
+        width={200}
+        height={200}
+      /> */}
     </div>
   );
 };
