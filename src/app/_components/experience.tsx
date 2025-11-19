@@ -1,20 +1,14 @@
-import Section from "./section";
+import {
+  Company,
+  Project,
+  ProjectType,
+  Section,
+  type StepsType,
+  Title,
+} from "./section";
 
 const Experience = () => {
-  type Project = {
-    title: string;
-    description: string;
-    technologies: string;
-  };
-
-  type Position = { title: string; date: string; projects: Project[] };
-  type WorkExperience = {
-    company: string;
-    link: string;
-    positions: Position[];
-  }[];
-
-  const inproProjects: WorkExperience = [
+  const experienceSteps: StepsType = [
     {
       company: "inpro",
       link: "https://www.inpro.de/",
@@ -105,39 +99,19 @@ const Experience = () => {
       date=""
       content={
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
-          {inproProjects.map((company) => (
+          {experienceSteps.map((company) => (
             <div key={company.company} className="mb-8">
-              <h2 className="mb-6 text-left text-2xl text-zinc-300 sm:text-3xl md:text-4xl">
-                <a href={company.link} target="_blank">
-                  {company.company}
-                </a>
-              </h2>
+              <Company title={company.company} link={company.link} />
               {company.positions.map((position) => (
                 <div key={position.title} className="mb-6">
-                  <h3 className="mb-4 text-xl text-zinc-300 sm:text-2xl md:text-3xl">
-                    <div className="flex w-full flex-col justify-between">
-                      <span className="text-lg sm:text-xl md:text-2xl">
-                        {position.title}
-                      </span>
-                      <span className="text-sm font-extralight leading-relaxed text-zinc-300 sm:text-base">
-                        {position.date}
-                      </span>
-                    </div>
-                  </h3>
+                  <Title title={position.title} date={position.date} />
                   {position.projects.map((project) => (
-                    <div key={project.title} className="py-4 pl-0 sm:pl-4">
-                      <div className="flex flex-col items-center space-y-2 px-4 py-1 sm:items-start sm:px-0">
-                        <h4 className="text-left text-base text-zinc-300 sm:text-lg">
-                          {project.title}
-                        </h4>
-                        <p className="w-full text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
-                          {project.description}
-                        </p>
-                      </div>
-                      <div className="group flex w-full items-center justify-start px-4 font-mono text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
-                        {project.technologies}
-                      </div>
-                    </div>
+                    <Project
+                      key={project.title}
+                      title={project.title}
+                      description={project.description}
+                      technologies={project.technologies}
+                    />
                   ))}
                 </div>
               ))}

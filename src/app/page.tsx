@@ -1,11 +1,9 @@
 "use client";
 
-import { Card, CardContent } from "~/components/ui/card";
 import Welcome from "./_components/welcome";
-import Section from "./_components/section";
 import { useEffect, useRef } from "react";
 import Experience from "./_components/experience";
-import Education from "./_components/education";
+import Education, { Certifications } from "./_components/education";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -146,11 +144,13 @@ export default function HomePage() {
         <Welcome />
         <Experience />
         <Education />
+        <Certifications />
 
         {/* Cycle 2 (duplicate) */}
         <Welcome />
         <Experience />
         <Education />
+        <Certifications />
       </div>
     </main>
   );

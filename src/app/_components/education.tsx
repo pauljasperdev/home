@@ -1,27 +1,22 @@
-import Section from "./section";
+import {
+  Certificate,
+  CertificateType,
+  Company,
+  Project,
+  Section,
+  StepsType,
+  Title,
+} from "./section";
 
-const Inpro = () => {
-  type Project = {
-    title: string;
-    description: string;
-    technologies: string;
-  };
-
-  type Position = { title: string; date: string; projects: Project[] };
-  type WorkExperience = {
-    company: string;
-    link: string;
-    positions: Position[];
-  }[];
-
-  const inproProjects: WorkExperience = [
+export default function Education() {
+  const educationSteps: StepsType = [
     {
       company: "University of Applied Science Münster",
       link: "https://www.fh-muenster.de/de/studiengaenge/chemical-engineering-master",
       positions: [
         {
-          title: "Master of Science",
-          date: "09/2017 - 04/2020",
+          title: "M.Sc. Chemical Engineering",
+          date: "2016 - 2020",
           projects: [
             {
               title: "Master Thesis Student",
@@ -45,8 +40,8 @@ const Inpro = () => {
           ],
         },
         {
-          title: "Bachelor of Science",
-          date: "09/2013 - 08/2017",
+          title: "B.Sc. Chemical Engineering",
+          date: "2012 - 2015",
           projects: [],
         },
       ],
@@ -68,39 +63,19 @@ const Inpro = () => {
       date=""
       content={
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
-          {inproProjects.map((company) => (
+          {educationSteps.map((company) => (
             <div key={company.company} className="mb-8">
-              <h2 className="mb-6 text-left text-2xl text-zinc-300 sm:text-3xl md:text-4xl">
-                <a href={company.link} target="_blank">
-                  {company.company}
-                </a>
-              </h2>
+              <Company title={company.company} link={company.link} />
               {company.positions.map((position) => (
                 <div key={position.title} className="mb-6">
-                  <h3 className="mb-4 text-xl text-zinc-300 sm:text-2xl md:text-3xl">
-                    <div className="flex w-full flex-col justify-between">
-                      <span className="text-lg sm:text-xl md:text-2xl">
-                        {position.title}
-                      </span>
-                      <span className="text-sm font-extralight leading-relaxed text-zinc-300 sm:text-base">
-                        {position.date}
-                      </span>
-                    </div>
-                  </h3>
+                  <Title title={position.title} date={position.date} />
                   {position.projects.map((project) => (
-                    <div key={project.title} className="py-4 pl-0 sm:pl-4">
-                      <div className="flex flex-col items-center space-y-2 px-4 py-1 sm:items-start sm:px-0">
-                        <h4 className="text-left text-base text-zinc-300 sm:text-lg">
-                          {project.title}
-                        </h4>
-                        <p className="w-full text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
-                          {project.description}
-                        </p>
-                      </div>
-                      <div className="group flex w-full items-center justify-center px-4 font-mono text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
-                        {project.technologies}
-                      </div>
-                    </div>
+                    <Project
+                      key={project.title}
+                      title={project.title}
+                      description={project.description}
+                      technologies={project.technologies}
+                    />
                   ))}
                 </div>
               ))}
@@ -110,6 +85,69 @@ const Inpro = () => {
       }
     />
   );
-};
+}
 
-export default Inpro;
+export function Certifications() {
+  const certifications: CertificateType[] = [
+    {
+      title: "AWS Certified Solutions Architect - Associate",
+      description: "Amazon Web Services (AWS)",
+      date: "2025",
+    },
+    {
+      title: "Git Advanced Topics",
+      description: "GROSSWEBER Groß, Weber & Partner",
+      date: "2023",
+    },
+    {
+      title: "Professional Scrum Master I",
+      description: "Scrum.org",
+      date: "2023",
+    },
+    {
+      title: "Clean Code C++",
+      description: "GROSSWEBER Groß, Weber & Partner",
+      date: "2022",
+    },
+    {
+      title: "Design Thinking Practitioner",
+      description: "launchlabs Berlin",
+      date: "2021",
+    },
+    {
+      title: "Improving Deep Neural Networks",
+      description: "Coursera",
+      date: "2020",
+    },
+    {
+      title: "Neural Networks and Deep Learning",
+      description: "Coursera",
+      date: "2020",
+    },
+    {
+      title: "Machine Learning",
+      description: "Coursera",
+      date: "2020",
+    },
+  ];
+
+  return (
+    <Section
+      title={"Certifications"}
+      description={<></>}
+      date=""
+      content={
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+          {certifications.map((certification) => (
+            <Certificate
+              key={certification.title}
+              title={certification.title}
+              description={certification.description}
+              date={certification.date}
+            />
+          ))}
+        </div>
+      }
+    />
+  );
+}
