@@ -53,11 +53,10 @@ export default function Education() {
       title={"Education"}
       description={
         <>
-          At inpro, a joint venture between Volkswagen and Siemens, I developed
-          production software and prototypes for industrial applications. I
-          worked on experimental projects with new technologies to assess their
-          viability for deployment at scale. I worked as a Developer, Scrum
-          Master, and Design Thinker.
+          I studied Chemical Engineering at the University of Applied Science
+          Münster. During my master studies focused on simulation and
+          programming. During my master thesis I extended a CFD solver to
+          simulate viscoelastic fluids.
         </>
       }
       date=""

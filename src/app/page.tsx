@@ -143,14 +143,14 @@ export default function HomePage() {
         {/* Cycle 1 */}
         <Welcome />
         <Experience />
-        <Education />
         <Certifications />
+        <Education />
 
         {/* Cycle 2 (duplicate) */}
         <Welcome />
         <Experience />
-        <Education />
         <Certifications />
+        <Education />
       </div>
     </main>
   );
