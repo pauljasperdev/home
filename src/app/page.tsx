@@ -14,121 +14,63 @@ export default function HomePage() {
     const content = contentRef.current;
     if (!container || !content) return;
 
-    let scrollPosition = 0;
     let cycleHeight = 0;
-    let ticking = false;
 
     const getCycleHeight = () => {
       const children = Array.from(content.children);
-      const half = Math.floor(children.length / 2);
-      let total = 0;
-      for (let i = 0; i < half; i++) {
-        const el = children[i] as HTMLElement;
-        total += el.getBoundingClientRect().height;
-      }
-      return total;
+      const third = Math.floor(children.length / 3);
+      if (third === 0) return 0;
+
+      // Measure distance between the first original item and its duplicate
+      // This accounts for all heights, margins, and gaps automatically
+      const firstOriginal = children[0] as HTMLElement;
+      const firstDuplicate = children[third] as HTMLElement;
+
+      return Math.abs(
+        firstDuplicate.getBoundingClientRect().top -
+          firstOriginal.getBoundingClientRect().top,
+      );
     };
 
-    const updateTransform = () => {
-      if (!content || cycleHeight <= 0) {
-        ticking = false;
-        return;
+    const handleScroll = () => {
+      // If scrolled to the top (start of Cycle 1), jump to start of Cycle 2
+      if (container.scrollTop < 5) {
+        container.scrollTop += cycleHeight;
       }
-      // Normalize into [0, cycleHeight)
-      scrollPosition =
-        ((scrollPosition % cycleHeight) + cycleHeight) % cycleHeight;
-      content.style.transform = `translateY(${-scrollPosition}px)`;
-      ticking = false;
+      // If scrolled to the start of Cycle 3, jump back to start of Cycle 2
+      else if (container.scrollTop >= cycleHeight * 2 - 5) {
+        container.scrollTop -= cycleHeight;
+      }
     };
 
     const recalcHeights = () => {
-      const prev = cycleHeight;
-      const next = getCycleHeight();
-      if (next <= 0) return;
-      if (prev === 0) {
-        cycleHeight = next;
-      } else {
-        const normalized = ((scrollPosition % prev) + prev) % prev;
-        const ratio = normalized / prev;
-        cycleHeight = next;
-        scrollPosition = ratio * cycleHeight;
-      }
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateTransform);
-      }
+      cycleHeight = getCycleHeight();
     };
 
     // Initial measurement
     recalcHeights();
 
-    const wheelListenerOptions: AddEventListenerOptions = { passive: true };
-    const touchStartListenerOptions: AddEventListenerOptions = {
-      passive: true,
-    };
-    const touchMoveListenerOptions: AddEventListenerOptions = {
-      passive: false,
-    };
-
-    const handleWheel: EventListener = (event) => {
-      const wheelEvent = event as WheelEvent;
-      scrollPosition += wheelEvent.deltaY;
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateTransform);
-      }
-    };
-
-    let lastTouchY = 0;
-    const handleTouchStart: EventListener = (event) => {
-      const touchEvent = event as TouchEvent;
-      lastTouchY = touchEvent.touches[0]?.clientY ?? 0;
-    };
-    const handleTouchMove: EventListener = (event) => {
-      const touchEvent = event as TouchEvent;
-      const currentY = touchEvent.touches[0]?.clientY ?? 0;
-      const dy = lastTouchY - currentY; // match wheel: positive dy scrolls down
-      lastTouchY = currentY;
-      scrollPosition += dy;
-      touchEvent.preventDefault();
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateTransform);
-      }
-    };
-
-    container.addEventListener("wheel", handleWheel, wheelListenerOptions);
-    container.addEventListener(
-      "touchstart",
-      handleTouchStart,
-      touchStartListenerOptions,
-    );
-    container.addEventListener(
-      "touchmove",
-      handleTouchMove,
-      touchMoveListenerOptions,
-    );
+    // Start in the middle cycle to allow upward scrolling
+    if (cycleHeight > 0) {
+      container.scrollTop = cycleHeight;
+    }
 
     const ro = new ResizeObserver(() => {
       recalcHeights();
+      // Adjust scroll if we were at the top (which would block upward scroll)
+      if (container.scrollTop === 0 && cycleHeight > 0) {
+        container.scrollTop = cycleHeight;
+      }
     });
     ro.observe(content);
 
     const handleWindowResize = () => recalcHeights();
+
+    container.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
-      container.removeEventListener("wheel", handleWheel, wheelListenerOptions);
-      container.removeEventListener(
-        "touchstart",
-        handleTouchStart,
-        touchStartListenerOptions,
-      );
-      container.removeEventListener(
-        "touchmove",
-        handleTouchMove,
-        touchMoveListenerOptions,
-      );
+      container.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleWindowResize);
       ro.disconnect();
     };
@@ -147,6 +89,12 @@ export default function HomePage() {
         <Education />
 
         {/* Cycle 2 (duplicate) */}
+        <Welcome />
+        <Experience />
+        <Certifications />
+        <Education />
+
+        {/* Cycle 3 (duplicate) */}
         <Welcome />
         <Experience />
         <Certifications />

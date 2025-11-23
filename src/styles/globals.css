@@ -66,12 +66,15 @@
 }
 .infinite-scroll {
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   position: relative;
+  scrollbar-width: none;
+}
+.infinite-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .content-block {
-  position: absolute;
   width: 100%;
-  will-change: transform;
 }
