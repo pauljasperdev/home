@@ -120,7 +120,7 @@ export function Company({
 }) {
   return (
     <div className="mb-8">
-      <h2 className="mb-6 text-left text-2xl text-zinc-300 sm:text-6xl">
+      <h2 className="mb-6 text-left text-4xl text-zinc-300 sm:text-6xl">
         <a href={link} target="_blank">
           {title}
         </a>
@@ -146,14 +146,14 @@ export function Certificate({
   return (
     <div className="py-4 pl-0">
       <div className="flex flex-col items-center space-y-2 px-4 py-1 sm:items-start sm:px-0">
-        <h4 className="text-left text-base text-zinc-300 sm:text-lg">
+        <h4 className="text-center text-base text-zinc-300 sm:text-left sm:text-lg">
           {title}
         </h4>
-        <p className="w-full text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
+        <p className="w-full text-center text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-left sm:text-base">
           {description}
         </p>
       </div>
-      <div className="group flex w-full items-center justify-start px-4 text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
+      <div className="group flex w-full items-center justify-center px-4 text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
         {date}
       </div>
     </div>
