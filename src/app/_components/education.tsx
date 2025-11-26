@@ -52,7 +52,6 @@ export default function Education() {
   return (
     <Section
       title={"Education"}
-      description={<></>}
       content={
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
           {educationSteps.map((company) => (
@@ -130,7 +129,6 @@ export function Certifications() {
   return (
     <Section
       title={"Certifications"}
-      description={<></>}
       content={
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
           {certifications.map((certification) => (

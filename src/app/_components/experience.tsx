@@ -29,7 +29,7 @@ const Experience = () => {
             Conducted code reviews and mentored a team of 2 developers. \
             Worked closely with the non-technical project manager to ensure the project vision was met.",
               technologies:
-                "Nextjs, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, GenAI",
+                "Nextjs, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, Docker, GenAI",
             },
           ],
         },
@@ -45,7 +45,7 @@ const Experience = () => {
             Developed an internal web app for testing and benchmarking the RAG system. \
             Deployed infrastructure to AWS with CDK and set up CI/CD pipelines in GitLab.",
               technologies:
-                "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, better-auth, GenAI, RAG",
+                "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, better-auth, Docker, RAG, GenAI",
             },
             {
               title: "Text2Tech",
@@ -53,7 +53,7 @@ const Experience = () => {
                 "Built the frontend for a technology monitoring demonstrator that uses deep learning to extract information from automotive industry texts. \
             The system automatically identifies technologies, companies, and their relationships from German and English sources. \
             This was part of a research project funded by the German Federal Ministry of Education and Research.",
-              technologies: "React, TypeScript, GenAI",
+              technologies: "React, TypeScript, Docker, GenAI",
             },
           ],
         },
@@ -89,7 +89,6 @@ const Experience = () => {
   return (
     <Section
       title={<>Experience</>}
-      description={<></>}
       content={
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
           {experienceSteps.map((company) => (

@@ -24,11 +24,9 @@ export type CertificateType = {
 
 export function Section({
   title,
-  description,
   content,
 }: {
   title: React.ReactNode;
-  description: React.ReactNode;
   content: React.ReactNode;
 }) {
   return (
@@ -37,9 +35,6 @@ export function Section({
         <h2 className="py-4 text-left text-4xl text-zinc-300 sm:text-6xl md:text-8xl">
           {title}
         </h2>
-        <p className="text-md leading-relaxed text-zinc-400 sm:w-[90%]">
-          {description}
-        </p>
       </div>
       <div className="group flex w-full items-center justify-center sm:items-start sm:justify-normal">
         {content}
