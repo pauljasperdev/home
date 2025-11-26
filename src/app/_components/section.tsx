@@ -31,12 +31,12 @@ export function Section({
 }) {
   return (
     <div className="flex min-h-[70vh] w-full flex-col gap-4 pb-[200px]">
-      <div className="flex flex-col items-center space-y-2 px-8 sm:items-start sm:px-0">
-        <h2 className="py-4 text-left text-4xl text-zinc-300 sm:text-6xl md:text-8xl">
+      <div className="flex flex-col items-start space-y-2 px-0 sm:items-start sm:px-0">
+        <h2 className="-ml-[2px] py-4 text-left text-4xl text-zinc-300 sm:-ml-[4px] sm:text-6xl md:-ml-[6px] md:text-8xl">
           {title}
         </h2>
       </div>
-      <div className="group flex w-full items-center justify-center sm:items-start sm:justify-normal">
+      <div className="group flex w-full items-start justify-start sm:items-start sm:justify-normal">
         {content}
       </div>
     </div>
@@ -90,15 +90,15 @@ export function Project({
 }) {
   return (
     <div className="py-4 pl-0">
-      <div className="flex flex-col items-center space-y-2 px-4 py-1 sm:items-start sm:px-0">
+      <div className="flex flex-col items-start space-y-2 px-0 py-1 sm:items-start sm:px-0">
         <h4 className="text-left text-base text-zinc-300 sm:text-lg">
           {title}
         </h4>
-        <p className="w-full text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
+        <p className="w-full text-left text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
           {description}
         </p>
       </div>
-      <div className="group flex w-full items-center justify-start px-4 font-mono text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
+      <div className="group flex w-full items-center justify-start px-0 font-mono text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
         {technologies}
       </div>
     </div>
@@ -140,15 +140,15 @@ export function Certificate({
 }) {
   return (
     <div className="py-4 pl-0">
-      <div className="flex flex-col items-center space-y-2 px-4 py-1 sm:items-start sm:px-0">
-        <h4 className="text-center text-base text-zinc-300 sm:text-left sm:text-lg">
+      <div className="flex flex-col items-start space-y-2 px-0 py-1 sm:items-start sm:px-0">
+        <h4 className="text-left text-base text-zinc-300 sm:text-lg">
           {title}
         </h4>
-        <p className="w-full text-center text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-left sm:text-base">
+        <p className="w-full text-left text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
           {description}
         </p>
       </div>
-      <div className="group flex w-full items-center justify-center px-4 text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
+      <div className="group flex w-full items-center justify-start px-0 text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
         {date}
       </div>
     </div>
