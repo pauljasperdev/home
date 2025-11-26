@@ -19,7 +19,7 @@ export const experienceSteps: StepsType = [
             description:
               "Led development of a web app to extract technical rules from unstructured documents using Next.js and Python. Made key technical decisions and designed the system architecture. Built serverless infrastructure on AWS with SST. Set up automated testing and deployment pipelines in GitLab. Conducted code reviews and mentored a team of 2 developers. Worked closely with the non-technical project manager to ensure the project vision was met.",
             technologies:
-              "Nextjs, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, GenAI",
+              "Nextjs, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, Docker, GenAI",
           },
         ],
       },
@@ -32,13 +32,13 @@ export const experienceSteps: StepsType = [
             description:
               "Built a shop-floor chatbot with Nuxt frontend and Python backend with RAG. Created a data ingestion pipeline to index and embed documents for retrieval. Developed an internal web app for testing and benchmarking the RAG system. Deployed infrastructure to AWS with CDK and set up CI/CD pipelines in GitLab.",
             technologies:
-              "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, better-auth, GenAI, RAG",
+              "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, better-auth, Docker, GenAI, RAG",
           },
           {
             title: "Text2Tech",
             description:
               "Built the frontend for a technology monitoring demonstrator that uses deep learning to extract information from automotive industry texts. The system automatically identifies technologies, companies, and their relationships from German and English sources. This was part of a research project funded by the German Federal Ministry of Education and Research.",
-            technologies: "React, TypeScript, GenAI",
+            technologies: "React, TypeScript, Docker, GenAI",
           },
         ],
       },
