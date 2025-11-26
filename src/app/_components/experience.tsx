@@ -1,5 +1,5 @@
 import { experienceSteps } from "~/lib/cv-data";
-import { Company, Project, Section, type StepsType, Title } from "./section";
+import { Company, Project, Section, Title } from "./section";
 
 const Experience = () => {
   return (
