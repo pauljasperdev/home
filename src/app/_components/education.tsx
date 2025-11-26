@@ -1,7 +1,6 @@
 import {
   Certificate,
   CertificateType,
-  Company,
   Project,
   Section,
   StepsType,
@@ -58,14 +57,14 @@ export default function Education() {
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
           {educationSteps.map((company) => (
             <div key={company.company} className="mb-8">
-              <Company
-                title={company.company}
-                link={company.link}
-                description={company.description}
-              />
               {company.positions.map((position) => (
                 <div key={position.title} className="mb-6">
-                  <Title title={position.title} date={position.date} />
+                  <Title
+                    title={position.title}
+                    date={position.date}
+                    company={company.company}
+                    companyLink={company.link}
+                  />
                   {position.projects.map((project) => (
                     <Project
                       key={project.title}

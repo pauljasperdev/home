@@ -48,10 +48,36 @@ export function Section({
   );
 }
 
-export function Title({ title, date }: { title: string; date: string }) {
+export function Title({
+  title,
+  date,
+  company,
+  companyLink,
+}: {
+  title: string;
+  date: string;
+  company?: string;
+  companyLink?: string;
+}) {
   return (
     <div className="flex w-full flex-col justify-between">
       <h3 className="text-2xl text-zinc-300 sm:text-4xl">{title}</h3>
+      {company && (
+        <h4 className="text-lg text-zinc-400 sm:text-xl">
+          {companyLink ? (
+            <a
+              href={companyLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-200"
+            >
+              {company}
+            </a>
+          ) : (
+            company
+          )}
+        </h4>
+      )}
       <span className="text-sm font-extralight leading-relaxed text-zinc-300 sm:text-base">
         {date}
       </span>
