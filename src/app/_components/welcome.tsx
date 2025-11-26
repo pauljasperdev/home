@@ -1,21 +1,21 @@
 import React from "react";
 import { Button } from "~/components/ui/button";
-import { Mail, Github } from "lucide-react";
+import { Mail, Github, Download } from "lucide-react";
 import Blueskyicon from "./Blueskyicon";
 import Link from "next/link";
 import Image from "next/image";
 
 const Welcome = () => {
   return (
-    <div className="flex min-h-screen items-center justify-start px-4 sm:items-start sm:px-0">
-      <div className="flex flex-col items-start justify-center space-y-4 sm:space-y-8">
+    <div className="flex min-h-screen items-center justify-center px-4 sm:items-start sm:justify-start sm:px-0">
+      <div className="flex flex-col items-center justify-center space-y-4 sm:items-start sm:space-y-8">
         <h1 className="text-4xl sm:text-6xl md:text-8xl">Hi, I&apos;m Paul.</h1>
         <div className="flex w-full flex-col items-start justify-start space-y-4">
-          <h2 className="text-2xl font-light sm:text-4xl md:text-5xl">
+          <h2 className="text-center text-2xl font-light sm:text-left sm:text-4xl md:text-5xl">
             Solutions Architect, Full-Stack Engineer and Design Thinker
           </h2>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 pt-8">
             <Button
               variant="link2"
               size="sm"
@@ -61,6 +61,21 @@ const Welcome = () => {
               >
                 <Mail className="size-6" />
                 {/* mail@pauljasper.dev */}
+              </Link>
+            </Button>
+            <Button
+              variant="link2"
+              size="sm"
+              className="w-20 rounded-full"
+              asChild
+            >
+              <Link
+                href="/cv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-extralight"
+              >
+                CV <Download className="size-6" />
               </Link>
             </Button>
           </div>
