@@ -77,7 +77,7 @@ export default function CVPage() {
         </section>
 
         <section className="mb-4 print:mb-2">
-          <h2 className="mb-2 border-b border-black text-lg font-bold uppercase tracking-wider print:mb-1 print:text-sm">
+          <h2 className="mb-2 border-b border-black text-lg font-bold uppercase tracking-wider print:mb-0.5 print:text-sm">
             Professional Experience
           </h2>
           <div className="space-y-3 print:space-y-0">
@@ -86,9 +86,9 @@ export default function CVPage() {
                 {exp.positions.map((pos, posIndex) => (
                   <div
                     key={posIndex}
-                    className="avoid-break mb-3 last:mb-0 print:mb-1.5"
+                    className="avoid-break mb-3 last:mb-0 print:mb-0.5"
                   >
-                    <div className="mb-0.5 flex items-baseline justify-between">
+                    <div className="mb-0.5 flex items-baseline justify-between print:mb-0">
                       <div className="text-base font-bold print:text-[10px]">
                         {pos.title}
                       </div>
@@ -96,7 +96,7 @@ export default function CVPage() {
                         {pos.date}
                       </div>
                     </div>
-                    <div className="mb-1 flex items-baseline justify-between">
+                    <div className="mb-1 flex items-baseline justify-between print:mb-0">
                       <div className="text-sm font-semibold italic print:text-[9px]">
                         {exp.company}
                       </div>
@@ -105,11 +105,11 @@ export default function CVPage() {
                       </div>
                     </div>
 
-                    <ul className="ml-4 mt-1.5 list-outside list-disc space-y-0.5 print:ml-3">
+                    <ul className="ml-4 mt-1.5 list-outside list-disc space-y-0.5 print:ml-3 print:mt-0.5">
                       {pos.projects.map((project, projIndex) => (
                         <li
                           key={projIndex}
-                          className="pl-1 text-sm leading-tight print:text-[9px] print:leading-[1.1]"
+                          className="pl-1 text-sm leading-tight print:pl-0 print:text-[9px] print:leading-[1.1]"
                         >
                           <span className="mr-1 font-semibold">
                             {project.title}:
