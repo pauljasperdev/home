@@ -13,6 +13,8 @@ export default function Education() {
     {
       company: "University of Applied Science Münster",
       link: "https://www.fh-muenster.de/de/studiengaenge/chemical-engineering-master",
+      description:
+        "I studied Chemical Engineering at the University of Applied Science Münster. During my master studies focused on simulation and programming. During my master thesis I extended a CFD solver to simulate viscoelastic fluids.",
       positions: [
         {
           title: "M.Sc. Chemical Engineering",
@@ -51,20 +53,16 @@ export default function Education() {
   return (
     <Section
       title={"Education"}
-      description={
-        <>
-          I studied Chemical Engineering at the University of Applied Science
-          Münster. During my master studies focused on simulation and
-          programming. During my master thesis I extended a CFD solver to
-          simulate viscoelastic fluids.
-        </>
-      }
-      date=""
+      description={<></>}
       content={
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
           {educationSteps.map((company) => (
             <div key={company.company} className="mb-8">
-              <Company title={company.company} link={company.link} />
+              <Company
+                title={company.company}
+                link={company.link}
+                description={company.description}
+              />
               {company.positions.map((position) => (
                 <div key={position.title} className="mb-6">
                   <Title title={position.title} date={position.date} />
@@ -134,7 +132,6 @@ export function Certifications() {
     <Section
       title={"Certifications"}
       description={<></>}
-      date=""
       content={
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
           {certifications.map((certification) => (

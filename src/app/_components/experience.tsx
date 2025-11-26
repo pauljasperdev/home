@@ -12,6 +12,8 @@ const Experience = () => {
     {
       company: "inpro",
       link: "https://www.inpro.de/",
+      description:
+        "At inpro, a joint venture between Volkswagen and Siemens, I developed production software and prototypes for industrial applications. I worked on experimental projects with new technologies to assess their viability for deployment at scale. I worked as a Developer, Scrum Master, and Design Thinker.",
       positions: [
         {
           title: "Senion Solutions Architect & Full Stack Engineer",
@@ -87,21 +89,16 @@ const Experience = () => {
   return (
     <Section
       title={<>Experience</>}
-      description={
-        <>
-          At inpro, a joint venture between Volkswagen and Siemens, I developed
-          production software and prototypes for industrial applications. I
-          worked on experimental projects with new technologies to assess their
-          viability for deployment at scale. I worked as a Developer, Scrum
-          Master, and Design Thinker.
-        </>
-      }
-      date=""
+      description={<></>}
       content={
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
           {experienceSteps.map((company) => (
             <div key={company.company} className="mb-8">
-              <Company title={company.company} link={company.link} />
+              <Company
+                title={company.company}
+                link={company.link}
+                description={company.description}
+              />
               {company.positions.map((position) => (
                 <div key={position.title} className="mb-6">
                   <Title title={position.title} date={position.date} />

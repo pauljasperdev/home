@@ -12,6 +12,7 @@ export type PositionType = {
 export type StepsType = {
   company: string;
   link: string;
+  description?: string;
   positions: PositionType[];
 }[];
 
@@ -24,12 +25,10 @@ export type CertificateType = {
 export function Section({
   title,
   description,
-  date,
   content,
 }: {
   title: React.ReactNode;
   description: React.ReactNode;
-  date: React.ReactNode;
   content: React.ReactNode;
 }) {
   return (
@@ -40,9 +39,6 @@ export function Section({
         </h2>
         <p className="text-md leading-relaxed text-zinc-400 sm:w-[90%]">
           {description}
-        </p>
-        <p className="text-md font-extralight leading-relaxed text-zinc-400">
-          {date}
         </p>
       </div>
       <div className="group flex w-full items-center justify-center sm:items-start sm:justify-normal">
@@ -87,7 +83,15 @@ export function Project({
     </div>
   );
 }
-export function Company({ title, link }: { title: string; link: string }) {
+export function Company({
+  title,
+  link,
+  description,
+}: {
+  title: string;
+  link: string;
+  description?: string;
+}) {
   return (
     <div className="mb-8">
       <h2 className="mb-6 text-left text-2xl text-zinc-300 sm:text-6xl">
@@ -95,6 +99,11 @@ export function Company({ title, link }: { title: string; link: string }) {
           {title}
         </a>
       </h2>
+      {description && (
+        <p className="text-md mb-6 leading-relaxed text-zinc-400 sm:w-[90%]">
+          {description}
+        </p>
+      )}
     </div>
   );
 }
