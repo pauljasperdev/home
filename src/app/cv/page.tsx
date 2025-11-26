@@ -10,37 +10,45 @@ export default function CVPage() {
       <style jsx global>{`
         @media print {
           @page {
-            margin: 1cm;
+            margin: 0;
+            size: A4;
           }
           body {
             -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
           }
           .no-print {
             display: none !important;
           }
+          .avoid-break {
+            break-inside: avoid;
+            page-break-inside: avoid;
+          }
+          .print-container {
+            padding: 0.5cm 1cm !important;
+            max-width: 210mm;
+            margin: 0 auto;
+          }
         }
       `}</style>
 
-      {/* Download/Print Button */}
-      <div className="no-print fixed bottom-8 right-8 z-50">
+      <div className="no-print fixed right-8 top-8 z-50">
         <Button
           onClick={() => window.print()}
-          className="shadow-lg print:hidden"
+          className="rounded-full border-2 border-black bg-black px-6 text-white shadow-xl hover:bg-white hover:text-black print:hidden"
           size="lg"
         >
-          <Printer className="mr-2 size-4" />
+          <Printer className="mr-2 size-5" />
           Download PDF
         </Button>
       </div>
 
-      {/* CV Content Container */}
-      <div className="mx-auto max-w-[210mm] bg-white">
-        {/* Header */}
-        <header className="mb-8 border-b-2 border-black pb-4 text-center">
-          <h1 className="mb-2 text-4xl font-bold uppercase tracking-wide">
+      <div className="print-container mx-auto max-w-[210mm] bg-white print:text-[11px]">
+        <header className="mb-4 border-b-2 border-black pb-2 text-center print:mb-3 print:pb-2">
+          <h1 className="mb-1 text-3xl font-bold uppercase tracking-wide print:text-2xl">
             Paul-Jasper Sahr
           </h1>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-0.5 text-sm print:text-[10px]">
             <span className="flex items-center gap-1">
               <MapPin className="size-3" /> Oldenburg, Germany
             </span>
@@ -56,59 +64,59 @@ export default function CVPage() {
             >
               <Globe className="size-3" /> pauljasper.dev
             </a>
-            {/* Add phone if available, placeholder for structure */}
-            {/* <span className="flex items-center gap-1"><Phone className="size-3" /> +49 123 456789</span> */}
           </div>
         </header>
 
-        {/* Professional Summary */}
-        <section className="mb-6">
-          <h2 className="mb-3 border-b border-black text-lg font-bold uppercase tracking-wider">
+        <section className="avoid-break mb-4 print:mb-2">
+          <h2 className="mb-1 border-b border-black text-lg font-bold uppercase tracking-wider print:mb-0.5 print:text-sm">
             Professional Summary
           </h2>
-          <p className="text-justify text-sm leading-relaxed">
+          <p className="text-justify text-sm leading-relaxed print:text-[9px] print:leading-tight">
             {cvData.professionalSummary}
           </p>
         </section>
 
-        {/* Professional Experience */}
-        <section className="mb-6">
-          <h2 className="mb-4 border-b border-black text-lg font-bold uppercase tracking-wider">
+        <section className="mb-4 print:mb-2">
+          <h2 className="mb-2 border-b border-black text-lg font-bold uppercase tracking-wider print:mb-1 print:text-sm">
             Professional Experience
           </h2>
-          <div className="space-y-6">
+          <div className="space-y-3 print:space-y-0">
             {cvData.experience.map((exp, index) => (
               <div key={index}>
-                {/* Render positions for the company */}
                 {exp.positions.map((pos, posIndex) => (
-                  <div key={posIndex} className="mb-4 last:mb-0">
-                    <div className="mb-1 flex items-baseline justify-between">
-                      <div className="text-base font-bold">{pos.title}</div>
-                      <div className="whitespace-nowrap text-sm font-medium">
+                  <div
+                    key={posIndex}
+                    className="avoid-break mb-3 last:mb-0 print:mb-1.5"
+                  >
+                    <div className="mb-0.5 flex items-baseline justify-between">
+                      <div className="text-base font-bold print:text-[10px]">
+                        {pos.title}
+                      </div>
+                      <div className="whitespace-nowrap text-sm font-medium print:text-[9px]">
                         {pos.date}
                       </div>
                     </div>
-                    <div className="mb-2 flex items-baseline justify-between">
-                      <div className="text-sm font-semibold italic">
+                    <div className="mb-1 flex items-baseline justify-between">
+                      <div className="text-sm font-semibold italic print:text-[9px]">
                         {exp.company}
                       </div>
-                      <div className="hidden text-xs text-gray-600 print:block">
+                      <div className="hidden text-xs text-gray-600 print:block print:text-[8px]">
                         Berlin, Germany
                       </div>
                     </div>
 
-                    <ul className="ml-4 list-outside list-disc space-y-1">
+                    <ul className="ml-4 mt-1.5 list-outside list-disc space-y-0.5 print:ml-3">
                       {pos.projects.map((project, projIndex) => (
                         <li
                           key={projIndex}
-                          className="pl-1 text-sm leading-tight"
+                          className="pl-1 text-sm leading-tight print:text-[9px] print:leading-[1.1]"
                         >
                           <span className="mr-1 font-semibold">
                             {project.title}:
                           </span>
                           {project.description}
                           {project.technologies && (
-                            <span className="mt-0.5 block text-xs italic text-gray-600">
+                            <span className="mt-0.5 block text-xs italic text-gray-600 print:text-[8px]">
                               Tech: {project.technologies}
                             </span>
                           )}
@@ -122,29 +130,37 @@ export default function CVPage() {
           </div>
         </section>
 
-        {/* Education */}
-        <section className="mb-6">
-          <h2 className="mb-4 border-b border-black text-lg font-bold uppercase tracking-wider">
+        <section className="mb-4 print:mb-2">
+          <h2 className="mb-2 border-b border-black text-lg font-bold uppercase tracking-wider print:mb-1 print:text-sm">
             Education
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2 print:space-y-1">
             {cvData.education.map((edu, index) => (
               <div key={index}>
                 {edu.positions.map((pos, posIndex) => (
-                  <div key={posIndex} className="mb-3 last:mb-0">
+                  <div
+                    key={posIndex}
+                    className="avoid-break mb-2 last:mb-0 print:mb-1"
+                  >
                     <div className="flex items-baseline justify-between">
-                      <div className="text-base font-bold">{edu.company}</div>
-                      <div className="text-sm font-medium">{pos.date}</div>
+                      <div className="text-base font-bold print:text-[10px]">
+                        {edu.company}
+                      </div>
+                      <div className="text-sm font-medium print:text-[9px]">
+                        {pos.date}
+                      </div>
                     </div>
-                    <div className="mb-1 flex items-baseline justify-between">
-                      <div className="text-sm italic">{pos.title}</div>
+                    <div className="mb-0.5 flex items-baseline justify-between">
+                      <div className="text-sm italic print:text-[9px]">
+                        {pos.title}
+                      </div>
                     </div>
                     {pos.projects.length > 0 && (
-                      <ul className="ml-4 mt-1 list-outside list-disc space-y-1">
+                      <ul className="ml-4 mt-0.5 list-outside list-disc space-y-0.5 print:ml-3">
                         {pos.projects.map((proj, pIndex) => (
                           <li
                             key={pIndex}
-                            className="pl-1 text-sm leading-tight"
+                            className="pl-1 text-sm leading-tight print:text-[9px] print:leading-[1.1]"
                           >
                             {proj.title && (
                               <span className="mr-1 font-semibold">
@@ -163,18 +179,16 @@ export default function CVPage() {
           </div>
         </section>
 
-        {/* Certifications & Skills */}
-        <section className="mb-6">
-          <h2 className="mb-4 border-b border-black text-lg font-bold uppercase tracking-wider">
+        <section className="avoid-break mb-4 print:mb-0">
+          <h2 className="mb-2 border-b border-black text-lg font-bold uppercase tracking-wider print:mb-1 print:text-sm">
             Certifications & Skills
           </h2>
 
-          {/* Skills Section - Derived from technologies mentioned */}
-          <div className="mb-4">
-            <h3 className="mb-1 text-sm font-bold uppercase text-gray-700">
+          <div className="mb-2 print:mb-1">
+            <h3 className="mb-0.5 text-sm font-bold uppercase text-gray-700 print:text-[9px]">
               Technical Skills
             </h3>
-            <div className="text-sm leading-relaxed">
+            <div className="text-sm leading-relaxed print:text-[9px] print:leading-tight">
               <span className="font-semibold">Languages & Frameworks:</span>{" "}
               {cvData.technicalSkills.languages}
               <br />
@@ -187,16 +201,18 @@ export default function CVPage() {
             </div>
           </div>
 
-          {/* Certifications List */}
           <div>
-            <h3 className="mb-1 text-sm font-bold uppercase text-gray-700">
+            <h3 className="mb-0.5 text-sm font-bold uppercase text-gray-700 print:text-[9px]">
               Certifications
             </h3>
-            <div className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-x-4 gap-y-0.5 sm:grid-cols-2 print:gap-y-0">
               {cvData.certifications.map((cert, index) => (
-                <div key={index} className="flex justify-between text-sm">
+                <div
+                  key={index}
+                  className="flex justify-between text-sm print:text-[9px]"
+                >
                   <span>{cert.title}</span>
-                  <span className="self-center text-xs italic text-gray-600">
+                  <span className="self-center text-xs italic text-gray-600 print:text-[8px]">
                     {cert.date}
                   </span>
                 </div>

@@ -5,7 +5,6 @@ const Experience = () => {
   return (
     <Section
       title={<>Experience</>}
-      description={<></>}
       content={
         <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
           {experienceSteps.map((company) => (
