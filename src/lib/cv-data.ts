@@ -188,8 +188,8 @@ export const sideProjects: SideProjectType[] = [
   {
     title: "Real Estate Calculator iOS App",
     description: [
-      "Building an iOS app the simplfies real estate calculations.",
-      "Making it more accessible to everyone.",
+      "Building an iOS app the simplfies real estate calculation for investment.",
+      "Development stalled due to family growth.",
     ],
     technologies:
       "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Tailwind CSS, ",

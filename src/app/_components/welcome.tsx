@@ -11,7 +11,7 @@ const Welcome = () => {
 
   const handlePrint = () => {
     const frame = printFrameRef.current;
-    if (frame && frame.contentWindow) {
+    if (frame?.contentWindow) {
       frame.contentWindow.print();
     }
   };
