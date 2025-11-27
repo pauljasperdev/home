@@ -1,6 +1,6 @@
 import { type CertificateType } from "~/app/_components/section";
 
-export function Skills({
+export function Certifications({
   certifications,
 }: {
   certifications: CertificateType[];
@@ -16,7 +16,7 @@ export function Skills({
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className="flex justify-between text-sm print:text-[9px]"
+              className="flex justify-between text-sm print:my-0 print:text-[9px] print:leading-none"
             >
               <span>{cert.title}</span>
               <span className="self-center text-xs italic text-gray-600 print:text-[8px]">

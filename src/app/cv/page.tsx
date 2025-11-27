@@ -6,8 +6,7 @@ import { Summary } from "./_components/summary";
 import { Experience } from "./_components/experience";
 import { Education } from "./_components/education";
 import { Projects } from "./_components/projects";
-import { Skills } from "./_components/skills";
-import { DownloadButton } from "./_components/download-button";
+import { Certifications } from "./_components/skills";
 
 export default function CVPage() {
   return (
@@ -37,14 +36,12 @@ export default function CVPage() {
         }
       `}</style>
 
-      <DownloadButton />
-
       <div className="print-container mx-auto flex max-w-[210mm] flex-col gap-4 bg-white print:gap-5 print:text-[11px]">
         <Header />
         <Summary summary={cvData.professionalSummary} />
         <Experience experience={cvData.experience} />
         <Projects projects={cvData.sideProjects} />
-        <Skills certifications={cvData.certifications} />
+        <Certifications certifications={cvData.certifications} />
         <Education education={cvData.education} />
       </div>
     </div>

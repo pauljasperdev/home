@@ -1,21 +1,13 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { Button } from "~/components/ui/button";
-import { Mail, Github, Download, MapPin } from "lucide-react";
+import { Mail, Github, MapPin } from "lucide-react";
 import Blueskyicon from "./Blueskyicon";
 import Link from "next/link";
+import { DownloadButton } from "./download-button";
 
 const Welcome = () => {
-  const printFrameRef = useRef<HTMLIFrameElement>(null);
-
-  const handlePrint = () => {
-    const frame = printFrameRef.current;
-    if (frame?.contentWindow) {
-      frame.contentWindow.print();
-    }
-  };
-
   return (
     <>
       <div className="flex min-h-screen items-center justify-center px-4 sm:justify-start sm:px-0">
@@ -78,16 +70,7 @@ const Welcome = () => {
                   {/* mail@pauljasper.dev */}
                 </Link>
               </Button>
-              <Button
-                variant="link2"
-                size="sm"
-                className="w-20 rounded-full"
-                onClick={handlePrint}
-              >
-                <span className="flex items-center gap-1 text-lg font-extralight">
-                  CV <Download className="size-6" />
-                </span>
-              </Button>
+              <DownloadButton />
             </div>
           </div>
         </div>
@@ -99,14 +82,6 @@ const Welcome = () => {
         height={200}
       /> */}
       </div>
-
-      <iframe
-        ref={printFrameRef}
-        src="/cv"
-        className="fixed h-0 w-0 opacity-0"
-        title="CV Print Frame"
-        aria-hidden="true"
-      />
     </>
   );
 };
