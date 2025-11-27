@@ -18,7 +18,7 @@ const Welcome = () => {
 
   return (
     <>
-      <div className="flex min-h-screen items-center justify-center px-4 sm:px-0">
+      <div className="flex min-h-screen items-center justify-center px-4 sm:justify-start sm:px-0">
         <div className="flex flex-col items-center justify-center space-y-4 sm:items-start sm:space-y-8">
           <h1 className="text-4xl sm:text-6xl md:text-8xl">
             Hi, I&apos;m Paul.
