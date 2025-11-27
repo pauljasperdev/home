@@ -4,6 +4,13 @@ export type ProjectType = {
   technologies: string;
 };
 
+export type SideProjectType = {
+  title: string;
+  description: string;
+  technologies: string;
+  link: string;
+};
+
 export type PositionType = {
   title: string;
   date: string;
@@ -83,16 +90,29 @@ export function Project({
   title,
   description,
   technologies,
+  link,
 }: {
   title: string;
   description: string;
   technologies: string;
+  link?: string;
 }) {
   return (
     <div className="py-4 pl-0">
       <div className="flex flex-col items-start space-y-2 px-0 py-1 sm:items-start sm:px-0">
         <h4 className="text-left text-base text-zinc-300 sm:text-lg">
-          {title}
+          {link ? (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-200"
+            >
+              {title}
+            </a>
+          ) : (
+            title
+          )}
         </h4>
         <p className="w-full text-left text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
           {description}

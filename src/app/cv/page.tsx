@@ -5,6 +5,7 @@ import { Header } from "./_components/header";
 import { Summary } from "./_components/summary";
 import { Experience } from "./_components/experience";
 import { Education } from "./_components/education";
+import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
 import { DownloadButton } from "./_components/download-button";
 
@@ -43,6 +44,7 @@ export default function CVPage() {
         <Summary summary={cvData.professionalSummary} />
         <Experience experience={cvData.experience} />
         <Education education={cvData.education} />
+        <Projects projects={cvData.sideProjects} />
         <Skills
           skills={cvData.technicalSkills}
           certifications={cvData.certifications}

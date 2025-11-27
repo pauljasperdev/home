@@ -4,6 +4,7 @@ import Welcome from "./_components/welcome";
 import { useEffect, useRef } from "react";
 import Experience from "./_components/experience";
 import Education, { Certifications } from "./_components/education";
+import Projects from "./_components/projects";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,18 +88,21 @@ export default function HomePage() {
         <Experience />
         <Certifications />
         <Education />
+        <Projects />
 
         {/* Cycle 2 (duplicate) */}
         <Welcome />
         <Experience />
         <Certifications />
         <Education />
+        <Projects />
 
         {/* Cycle 3 (duplicate) */}
         <Welcome />
         <Experience />
         <Certifications />
         <Education />
+        <Projects />
       </div>
     </main>
   );

@@ -1,6 +1,7 @@
 import {
   type StepsType,
   type CertificateType,
+  type SideProjectType,
 } from "~/app/_components/section";
 
 export const experienceSteps: StepsType = [
@@ -155,10 +156,22 @@ export const technicalSkills = {
   dataAI: "GenAI, RAG, Langchain, Numerical Simulation, CFD.",
 };
 
+export const sideProjects: SideProjectType[] = [
+  {
+    title: "Real Estate Calculator iOS App",
+    description:
+      "Building an iOS app the simplfies real estate calculations. Making it more accessible to everyone.",
+    technologies:
+      "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Tailwind CSS, ",
+    link: "https://github.com/pauljasperdev/immo",
+  },
+];
+
 export const cvData = {
   experience: experienceSteps,
   education: educationSteps,
   certifications: certifications,
   professionalSummary,
   technicalSkills,
+  sideProjects,
 };
