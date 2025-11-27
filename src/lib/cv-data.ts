@@ -12,7 +12,7 @@ export const experienceSteps: StepsType = [
       "At inpro, a joint venture between Volkswagen and Siemens, I developed production software and prototypes for industrial applications. I worked on experimental projects with new technologies to assess their viability for deployment at scale. I worked as a Developer, Scrum Master, and Design Thinker.",
     positions: [
       {
-        title: "Senior Solutions Architect & Full Stack Engineer",
+        title: "Senior Solutions Architect & Full-Stack Engineer",
         date: "since 01/2025",
         projects: [
           {
@@ -173,8 +173,10 @@ export const certifications: CertificateType[] = [
 ];
 
 export const professionalSummary =
-  "Experienced Solutions Architect and Full Stack Engineer with a strong background in software development, cloud infrastructure (AWS), and industrial applications. \
-   Proven track record in leading technical teams, designing scalable architectures, and implementing innovative solutions using modern technologies like Next.js, Python, and Generative AI. \.";
+  "Experienced Solutions Architect and Full-Stack Engineer with a strong background in software development, cloud infrastructure (AWS),\
+   and industrial applications. Proven track record in leading technical teams, designing scalable architectures,\
+    and implementing innovative solutions using modern technologies like Next.js, Python, and Generative AI. \
+    Interested in shippping fast with a current tech stack. ";
 
 export const technicalSkills = {
   languages: "TypeScript, Python, C++, React, Next.js, Nuxt, Node.js, SQL.",

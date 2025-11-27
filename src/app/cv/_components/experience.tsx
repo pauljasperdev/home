@@ -7,9 +7,9 @@ export function Experience({ experience }: { experience: StepsType }) {
       <h2 className="border-b border-black text-lg font-bold uppercase tracking-wider print:text-sm">
         Professional Experience
       </h2>
-      <div className="flex flex-col gap-6 print:gap-2">
+      <div className="flex flex-col gap-6 print:gap-4">
         {experience.map((exp, index) => (
-          <div key={index} className="flex flex-col gap-6 pt-2 print:gap-2">
+          <div key={index} className="flex flex-col gap-6 pt-2 print:gap-4">
             {exp.positions.map((pos, posIndex) => (
               <div
                 key={posIndex}

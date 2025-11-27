@@ -9,7 +9,7 @@ export function Education({ education }: { education: StepsType }) {
       </h2>
       <div className="flex flex-col gap-2 print:gap-1">
         {education.map((edu, index) => (
-          <div key={index} className="flex flex-col gap-4 pt-2 print:gap-1">
+          <div key={index} className="flex flex-col gap-4 pt-2 print:gap-2">
             {edu.positions.map((pos, posIndex) => (
               <div
                 key={posIndex}

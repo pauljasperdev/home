@@ -2,10 +2,13 @@ import { MapPin, Mail, Globe, ArrowUpRight } from "lucide-react";
 
 export function Header() {
   return (
-    <header className="flex flex-col gap-1 pb-2 text-center print:gap-0.5 print:pb-1">
+    <header className="flex flex-col gap-1 pb-2 text-center print:gap-0.5 print:pb-2">
       <h1 className="text-3xl font-bold uppercase tracking-wide print:text-2xl">
         Paul-Jasper Sahr
       </h1>
+      <span className="text-sm uppercase tracking-wide print:text-[10px]">
+        Solutions Architect, Full-Stack Engineer and Design Thinker
+      </span>
       <div className="flex flex-wrap justify-center gap-x-4 gap-y-0.5 text-sm print:text-[10px]">
         <span className="flex items-center gap-1">
           <MapPin className="size-3" /> Oldenburg, Germany
