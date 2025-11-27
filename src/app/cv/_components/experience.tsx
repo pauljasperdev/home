@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { type StepsType } from "~/app/_components/section";
 
 export function Experience({ experience }: { experience: StepsType }) {
@@ -33,6 +34,7 @@ export function Experience({ experience }: { experience: StepsType }) {
                           rel="noopener noreferrer"
                         >
                           {exp.company}
+                          <ArrowUpRight className="ml-0.5 inline-block size-3 -translate-y-1 text-gray-500 opacity-50 print:hidden" />
                         </a>
                       ) : (
                         exp.company
@@ -51,7 +53,20 @@ export function Experience({ experience }: { experience: StepsType }) {
                       className="pb-2 pl-1 text-sm leading-tight last:pb-0 print:pb-0 print:pl-0 print:text-[9px] print:leading-[1.1]"
                     >
                       <span className="mr-1 font-semibold">
-                        {project.title}:
+                        {project.link ? (
+                          <a
+                            href={project.link}
+                            className="hover:underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {project.title}
+                            <ArrowUpRight className="ml-0.5 inline-block size-3 -translate-y-1 text-gray-500 opacity-50 print:hidden" />
+                          </a>
+                        ) : (
+                          project.title
+                        )}
+                        :
                       </span>
                       {project.description}
                       {project.technologies && (

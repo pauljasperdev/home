@@ -37,6 +37,7 @@ export const experienceSteps: StepsType = [
           },
           {
             title: "Text2Tech",
+            link: "https://www.text2tech.de/",
             description:
               "Built the frontend for a technology monitoring demonstrator that uses deep learning to extract information from automotive industry texts. The system automatically identifies technologies, companies, and their relationships from German and English sources. This was part of a research project funded by the German Federal Ministry of Education and Research.",
             technologies: "React, TypeScript, Docker, GenAI",
@@ -56,6 +57,7 @@ export const experienceSteps: StepsType = [
           },
           {
             title: "hypro",
+            link: "https://edocs.tib.eu/files/e01fb24/1903522218.pdf",
             description:
               "Built a Cadmould data input module for importing injection molding simulation data. Developed data mapping to transfer fiber orientation information from Cadmould simulations to Abaqus mesh. Created result evaluation in Python. Attended project meetings to present progress and findings. Served as Scrum Master for the development team.",
             technologies: "C++, Python, Qt, cmake, Scrum Master",

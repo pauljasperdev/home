@@ -1,7 +1,10 @@
+import { ArrowUpRight } from "lucide-react";
+
 export type ProjectType = {
   title: string;
   description: string;
   technologies: string;
+  link?: string;
 };
 
 export type SideProjectType = {
@@ -74,6 +77,7 @@ export function Title({
               className="hover:text-zinc-200"
             >
               {company}
+              <ArrowUpRight className="ml-0.5 inline-block size-3 -translate-y-1 text-zinc-500 opacity-50" />
             </a>
           ) : (
             company
@@ -109,6 +113,7 @@ export function Project({
               className="hover:text-zinc-200"
             >
               {title}
+              <ArrowUpRight className="ml-0.5 inline-block size-3 -translate-y-1 text-zinc-500 opacity-50" />
             </a>
           ) : (
             title
@@ -136,8 +141,9 @@ export function Company({
   return (
     <div className="mb-8">
       <h2 className="mb-6 text-left text-4xl text-zinc-300 sm:text-6xl">
-        <a href={link} target="_blank">
+        <a href={link} target="_blank" className="flex items-center gap-2">
           {title}
+          <ArrowUpRight className="size-6 -translate-y-2 text-zinc-500 opacity-50" />
         </a>
       </h2>
       {description && (

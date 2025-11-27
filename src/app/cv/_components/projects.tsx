@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { type SideProjectType } from "~/app/_components/section";
 
 export function Projects({ projects }: { projects: SideProjectType[] }) {
@@ -22,6 +23,7 @@ export function Projects({ projects }: { projects: SideProjectType[] }) {
                     rel="noopener noreferrer"
                   >
                     {project.title}
+                    <ArrowUpRight className="ml-0.5 inline-block size-3 -translate-y-1 text-gray-500 opacity-50 print:hidden" />
                   </a>
                 ) : (
                   project.title

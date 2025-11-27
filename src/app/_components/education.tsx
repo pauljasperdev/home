@@ -23,6 +23,7 @@ export default function Education() {
                       title={project.title}
                       description={project.description}
                       technologies={project.technologies}
+                      link={project.link}
                     />
                   ))}
                 </div>

@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { type StepsType } from "~/app/_components/section";
 
 export function Education({ education }: { education: StepsType }) {
@@ -36,7 +37,20 @@ export function Education({ education }: { education: StepsType }) {
                       >
                         {proj.title && (
                           <span className="mr-1 font-semibold">
-                            {proj.title}:
+                            {proj.link ? (
+                              <a
+                                href={proj.link}
+                                className="hover:underline"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {proj.title}
+                                <ArrowUpRight className="ml-0.5 inline-block size-3 -translate-y-1 text-gray-500 opacity-50 print:hidden" />
+                              </a>
+                            ) : (
+                              proj.title
+                            )}
+                            :
                           </span>
                         )}
                         {proj.description}

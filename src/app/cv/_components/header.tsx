@@ -1,4 +1,4 @@
-import { MapPin, Mail, Globe } from "lucide-react";
+import { MapPin, Mail, Globe, ArrowUpRight } from "lucide-react";
 
 export function Header() {
   return (
@@ -21,6 +21,7 @@ export function Header() {
           className="flex items-center gap-1 hover:underline"
         >
           <Globe className="size-3" /> pauljasper.dev
+          <ArrowUpRight className="size-3 -translate-y-0.5 text-gray-500 opacity-50 print:hidden" />
         </a>
       </div>
     </header>
