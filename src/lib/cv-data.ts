@@ -77,7 +77,7 @@ export const experienceSteps: StepsType = [
               "Developed data mapping to transfer fiber orientation information from Cadmould simulations to Abaqus mesh.",
               "Created result evaluation in Python.",
               "Attended project meetings to present progress and findings.",
-              "Served as Scrum Master for the development team.",
+              "This was part of a research project funded by the German Federal Ministry of Education and Research.",
             ],
             technologies: "C++, Python, Qt, cmake, Scrum Master",
           },
