@@ -6,7 +6,7 @@ const Experience = () => {
     <Section
       title={<>Experience</>}
       content={
-        <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
+        <div className="flex w-full max-w-full flex-col sm:max-w-[90%]">
           {experienceSteps.map((company) => (
             <div key={company.company} className="mb-8">
               <Company

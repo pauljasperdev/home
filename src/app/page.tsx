@@ -16,21 +16,27 @@ export default function HomePage() {
     if (!container || !content) return;
 
     let cycleHeight = 0;
+    let cycleOffset = 0;
 
-    const getCycleHeight = () => {
+    const calculateMetrics = () => {
       const children = Array.from(content.children);
       const third = Math.floor(children.length / 3);
-      if (third === 0) return 0;
+      if (third === 0) return;
 
-      // Measure distance between the first original item and its duplicate
-      // This accounts for all heights, margins, and gaps automatically
       const firstOriginal = children[0] as HTMLElement;
       const firstDuplicate = children[third] as HTMLElement;
 
-      return Math.abs(
-        firstDuplicate.getBoundingClientRect().top -
-          firstOriginal.getBoundingClientRect().top,
-      );
+      const firstRect = firstOriginal.getBoundingClientRect();
+      const duplicateRect = firstDuplicate.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+
+      // Measure distance between the first original item and its duplicate
+      // This accounts for all heights, margins, and gaps automatically
+      cycleHeight = Math.abs(duplicateRect.top - firstRect.top);
+
+      // Calculate the scroll position to align the second cycle's start with the viewport top
+      cycleOffset =
+        container.scrollTop + (duplicateRect.top - containerRect.top);
     };
 
     const handleScroll = () => {
@@ -44,20 +50,16 @@ export default function HomePage() {
       }
     };
 
-    const recalcHeights = () => {
-      cycleHeight = getCycleHeight();
-    };
-
     // Initial measurement
-    recalcHeights();
+    calculateMetrics();
 
     // Start in the middle cycle to allow upward scrolling
     if (cycleHeight > 0) {
-      container.scrollTop = cycleHeight;
+      container.scrollTop = cycleOffset;
     }
 
     const ro = new ResizeObserver(() => {
-      recalcHeights();
+      calculateMetrics();
       // Adjust scroll if we were at the top (which would block upward scroll)
       if (container.scrollTop === 0 && cycleHeight > 0) {
         container.scrollTop = cycleHeight;
@@ -65,7 +67,7 @@ export default function HomePage() {
     });
     ro.observe(content);
 
-    const handleWindowResize = () => recalcHeights();
+    const handleWindowResize = () => calculateMetrics();
 
     container.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleWindowResize);
