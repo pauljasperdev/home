@@ -192,7 +192,7 @@ export const sideProjects: SideProjectType[] = [
       "Development stalled due to family growth.",
     ],
     technologies:
-      "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Tailwind CSS, ",
+      "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Tailwind CSS ",
     link: "https://github.com/pauljasperdev/immo",
   },
 ];
