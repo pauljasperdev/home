@@ -43,9 +43,9 @@ export default function CVPage() {
         <Header />
         <Summary summary={cvData.professionalSummary} />
         <Experience experience={cvData.experience} />
-        <Education education={cvData.education} />
         <Projects projects={cvData.sideProjects} />
         <Skills certifications={cvData.certifications} />
+        <Education education={cvData.education} />
       </div>
     </div>
   );

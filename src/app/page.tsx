@@ -86,23 +86,23 @@ export default function HomePage() {
         {/* Cycle 1 */}
         <Welcome />
         <Experience />
+        <Projects />
         <Certifications />
         <Education />
-        <Projects />
 
         {/* Cycle 2 (duplicate) */}
         <Welcome />
         <Experience />
+        <Projects />
         <Certifications />
         <Education />
-        <Projects />
 
         {/* Cycle 3 (duplicate) */}
         <Welcome />
         <Experience />
+        <Projects />
         <Certifications />
         <Education />
-        <Projects />
       </div>
     </main>
   );

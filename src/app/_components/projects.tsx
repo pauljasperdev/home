@@ -6,7 +6,7 @@ export default function Projects() {
     <Section
       title={"Side Projects"}
       content={
-        <div className="flex min-h-[70vh] w-full max-w-full flex-col sm:max-w-[90%]">
+        <div className="flex w-full max-w-full flex-col sm:max-w-[90%]">
           {sideProjects.map((project) => (
             <Project
               key={project.title}
