@@ -9,7 +9,7 @@ export function Education({ education }: { education: StepsType }) {
       </h2>
       <div className="flex flex-col gap-2 print:gap-1">
         {education.map((edu, index) => (
-          <div key={index} className="flex flex-col gap-4 pt-2 print:gap-2">
+          <div key={index} className="flex flex-col gap-4 pt-2 print:gap-1">
             {edu.positions.map((pos, posIndex) => (
               <div
                 key={posIndex}
@@ -53,7 +53,17 @@ export function Education({ education }: { education: StepsType }) {
                             :
                           </span>
                         )}
-                        {proj.description}
+                        {Array.isArray(proj.description) ? (
+                          <ul className="mt-1 list-disc pl-4">
+                            {proj.description.map((desc, i) => (
+                              <li key={i} className="pl-1">
+                                {desc}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          proj.description
+                        )}
                       </li>
                     ))}
                   </ul>

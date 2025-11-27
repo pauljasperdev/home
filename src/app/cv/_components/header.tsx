@@ -2,7 +2,7 @@ import { MapPin, Mail, Globe, ArrowUpRight } from "lucide-react";
 
 export function Header() {
   return (
-    <header className="flex flex-col gap-1 pb-2 text-center print:gap-0.5 print:pb-2">
+    <header className="flex flex-col gap-1 pb-2 text-center print:gap-0.5 print:pb-1">
       <h1 className="text-3xl font-bold uppercase tracking-wide print:text-2xl">
         Paul-Jasper Sahr
       </h1>

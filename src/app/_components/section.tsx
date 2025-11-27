@@ -2,14 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 
 export type ProjectType = {
   title: string;
-  description: string;
+  description: string | string[];
   technologies: string;
   link?: string;
 };
 
 export type SideProjectType = {
   title: string;
-  description: string;
+  description: string | string[];
   technologies: string;
   link: string;
 };
@@ -97,7 +97,7 @@ export function Project({
   link,
 }: {
   title: string;
-  description: string;
+  description: string | string[];
   technologies: string;
   link?: string;
 }) {
@@ -119,9 +119,19 @@ export function Project({
             title
           )}
         </h4>
-        <p className="w-full text-left text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
-          {description}
-        </p>
+        {Array.isArray(description) ? (
+          <ul className="w-full list-disc pl-4 text-left text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
+            {description.map((item, index) => (
+              <li key={index} className="pl-1">
+                {item}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="w-full text-left text-sm leading-relaxed text-zinc-400 sm:w-[90%] sm:text-base">
+            {description}
+          </p>
+        )}
       </div>
       <div className="group flex w-full items-center justify-start px-0 font-mono text-xs text-zinc-300 sm:items-start sm:justify-normal sm:px-0 sm:text-sm md:text-base">
         {technologies}

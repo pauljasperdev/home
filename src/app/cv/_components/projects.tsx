@@ -30,7 +30,17 @@ export function Projects({ projects }: { projects: SideProjectType[] }) {
                 )}
                 :
               </span>
-              {project.description}
+              {Array.isArray(project.description) ? (
+                <ul className="mt-1 list-disc pl-4">
+                  {project.description.map((desc, i) => (
+                    <li key={i} className="pl-1">
+                      {desc}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                project.description
+              )}
               {project.technologies && (
                 <span className="mt-0.5 block text-xs italic text-gray-600 print:text-[8px]">
                   Tech: {project.technologies}

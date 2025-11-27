@@ -39,7 +39,7 @@ export default function CVPage() {
 
       <DownloadButton />
 
-      <div className="print-container mx-auto flex max-w-[210mm] flex-col gap-4 bg-white print:gap-5 print:text-[11px]">
+      <div className="print-container mx-auto flex max-w-[210mm] flex-col gap-4 bg-white print:gap-3 print:text-[11px]">
         <Header />
         <Summary summary={cvData.professionalSummary} />
         <Experience experience={cvData.experience} />

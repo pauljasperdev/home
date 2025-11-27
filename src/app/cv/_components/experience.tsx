@@ -7,9 +7,9 @@ export function Experience({ experience }: { experience: StepsType }) {
       <h2 className="border-b border-black text-lg font-bold uppercase tracking-wider print:text-sm">
         Professional Experience
       </h2>
-      <div className="flex flex-col gap-6 print:gap-4">
+      <div className="flex flex-col gap-6 print:gap-2">
         {experience.map((exp, index) => (
-          <div key={index} className="flex flex-col gap-6 pt-2 print:gap-4">
+          <div key={index} className="flex flex-col gap-6 pt-2 print:gap-2">
             {exp.positions.map((pos, posIndex) => (
               <div
                 key={posIndex}
@@ -68,7 +68,17 @@ export function Experience({ experience }: { experience: StepsType }) {
                         )}
                         :
                       </span>
-                      {project.description}
+                      {Array.isArray(project.description) ? (
+                        <ul className="mt-1 list-disc pl-4">
+                          {project.description.map((desc, i) => (
+                            <li key={i} className="pl-1">
+                              {desc}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        project.description
+                      )}
                       {project.technologies && (
                         <span className="mt-0 block text-xs italic text-gray-600 print:text-[8px]">
                           Tech: {project.technologies}

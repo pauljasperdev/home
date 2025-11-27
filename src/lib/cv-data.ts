@@ -17,10 +17,14 @@ export const experienceSteps: StepsType = [
         projects: [
           {
             title: "Rule Mining",
-            description:
-              "Led development of a web app to extract technical rules from unstructured documents using Next.js and Python. Made key technical decisions and designed the system architecture. Built serverless infrastructure on AWS with SST. Set up automated testing and deployment pipelines in GitLab. Conducted code reviews and mentored a team of 2 developers. Worked closely with the non-technical project manager to ensure the project vision was met.",
+            description: [
+              "Led development,  of a web app to extract technical rules from unstructured documents ",
+              "Made key technical decisions, designed the system architecture, conducted code reviews and mentored a team of 2 developers",
+              "Built serverless infrastructure on AWS with SST and automated testing and deployment pipelines in GitLab.",
+              "Worked closely with the non-technical project manager to ensure the project vision was met.",
+            ],
             technologies:
-              "Nextjs, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, Docker, GenAI",
+              "Next.js, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, Docker, GenAI",
           },
         ],
       },
@@ -30,16 +34,23 @@ export const experienceSteps: StepsType = [
         projects: [
           {
             title: "Factory Chatbot",
-            description:
-              "Built a shop-floor chatbot with Nuxt frontend and Python backend with RAG. Created a data ingestion pipeline to index and embed documents for retrieval. Developed an internal web app for testing and benchmarking the RAG system. Deployed infrastructure to AWS with CDK and set up CI/CD pipelines in GitLab.",
+            description: [
+              "Built a shop-floor chatbot with Nuxt frontend and Python backend with RAG.",
+              "Created a data ingestion pipeline to index and embed documents for retrieval.",
+              "Developed an internal web app for testing and benchmarking the RAG system.",
+              "Deployed infrastructure to AWS with CDK and set up CI/CD pipelines in GitLab.",
+            ],
             technologies:
               "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, better-auth, Docker, GenAI, RAG",
           },
           {
             title: "Text2Tech",
             link: "https://www.text2tech.de/",
-            description:
-              "Built the frontend for a technology monitoring demonstrator that uses deep learning to extract information from automotive industry texts. The system automatically identifies technologies, companies, and their relationships from German and English sources. This was part of a research project funded by the German Federal Ministry of Education and Research.",
+            description: [
+              "Built the frontend for a technology monitoring demonstrator that uses deep learning to extract information from automotive industry texts.",
+              "The system automatically identifies technologies, companies, and their relationships from German and English sources.",
+              "This was part of a research project funded by the German Federal Ministry of Education and Research.",
+            ],
             technologies: "React, TypeScript, Docker, GenAI",
           },
         ],
@@ -50,16 +61,24 @@ export const experienceSteps: StepsType = [
         projects: [
           {
             title: "Virtual Process Chain",
-            description:
-              "Developed a C++ desktop application for data transfer between CAD/CAE systems. Created Python bindings for the library and integrated computer vision for scan mapping. Served as Scrum Master for the development team.",
+            description: [
+              "Developed a C++ desktop application for data transfer between CAD/CAE systems.",
+              "Created Python bindings for the library and integrated computer vision for scan mapping.",
+              "Served as Scrum Master for the development team.",
+            ],
             technologies:
               "C++, Qt, cmake, Python, Mesh & Scan Data, Scrum Master",
           },
           {
             title: "hypro",
             link: "https://edocs.tib.eu/files/e01fb24/1903522218.pdf",
-            description:
-              "Built a Cadmould data input module for importing injection molding simulation data. Developed data mapping to transfer fiber orientation information from Cadmould simulations to Abaqus mesh. Created result evaluation in Python. Attended project meetings to present progress and findings. Served as Scrum Master for the development team.",
+            description: [
+              "Built a Cadmould data input module for importing injection molding simulation data.",
+              "Developed data mapping to transfer fiber orientation information from Cadmould simulations to Abaqus mesh.",
+              "Created result evaluation in Python.",
+              "Attended project meetings to present progress and findings.",
+              "Served as Scrum Master for the development team.",
+            ],
             technologies: "C++, Python, Qt, cmake, Scrum Master",
           },
         ],
@@ -81,8 +100,12 @@ export const educationSteps: StepsType = [
         projects: [
           {
             title: "Master Thesis Student",
-            description:
-              "At University of Berlin, I developed and implemented a viscoelastic fluid model in OpenFOAM's C++ codebase to simulate free-rising bubbles. Modified the bubbleInterTrackFoam solver by implementing an extra stress tensor and adapting the viscoelasticModel library. Performed pseudo-2D and 3D simulations to validate the implementation and optimize numerical parameters. I created visualizations and graphs with Python.",
+            description: [
+              "At University of Berlin, I developed and implemented a viscoelastic fluid model in OpenFOAM's C++ codebase to simulate free-rising bubbles.",
+              "Modified the bubbleInterTrackFoam solver by implementing an extra stress tensor and adapting the viscoelasticModel library.",
+              "Performed pseudo-2D and 3D simulations to validate the implementation and optimize numerical parameters.",
+              "I created visualizations and graphs with Python.",
+            ],
             technologies: "C++, OpenFOAM, Python, CFD, Numerical Simulation",
           },
           {
@@ -150,7 +173,8 @@ export const certifications: CertificateType[] = [
 ];
 
 export const professionalSummary =
-  "Experienced Solutions Architect and Full Stack Engineer with a strong background in software development, cloud infrastructure (AWS), and industrial applications. Proven track record in leading technical teams, designing scalable architectures, and implementing innovative solutions using modern technologies like Next.js, Python, and Generative AI. Passionate about bridging the gap between complex technical requirements and business value.";
+  "Experienced Solutions Architect and Full Stack Engineer with a strong background in software development, cloud infrastructure (AWS), and industrial applications. \
+   Proven track record in leading technical teams, designing scalable architectures, and implementing innovative solutions using modern technologies like Next.js, Python, and Generative AI. \.";
 
 export const technicalSkills = {
   languages: "TypeScript, Python, C++, React, Next.js, Nuxt, Node.js, SQL.",
@@ -161,8 +185,10 @@ export const technicalSkills = {
 export const sideProjects: SideProjectType[] = [
   {
     title: "Real Estate Calculator iOS App",
-    description:
-      "Building an iOS app the simplfies real estate calculations. Making it more accessible to everyone.",
+    description: [
+      "Building an iOS app the simplfies real estate calculations.",
+      "Making it more accessible to everyone.",
+    ],
     technologies:
       "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Tailwind CSS, ",
     link: "https://github.com/pauljasperdev/immo",

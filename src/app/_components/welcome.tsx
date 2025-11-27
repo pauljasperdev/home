@@ -2,18 +2,9 @@
 
 import React, { useRef } from "react";
 import { Button } from "~/components/ui/button";
-import { Mail, Github, Download } from "lucide-react";
+import { Mail, Github, Download, MapPin } from "lucide-react";
 import Blueskyicon from "./Blueskyicon";
 import Link from "next/link";
-import Image from "next/image";
-
-import { cvData } from "~/lib/cv-data";
-import { Header } from "../cv/_components/header";
-import { Summary } from "../cv/_components/summary";
-import { Experience } from "../cv/_components/experience";
-import { Education } from "../cv/_components/education";
-import { Projects } from "../cv/_components/projects";
-import { Skills } from "../cv/_components/skills";
 
 const Welcome = () => {
   const printFrameRef = useRef<HTMLIFrameElement>(null);
@@ -36,7 +27,9 @@ const Welcome = () => {
             <h2 className="text-center text-2xl font-light sm:text-left sm:text-4xl md:text-5xl">
               Solutions Architect, Full-Stack Engineer and Design Thinker
             </h2>
-
+            <span className="flex items-center gap-1">
+              <MapPin className="size-3" /> Oldenburg, Germany
+            </span>
             <div className="flex gap-2 pt-8">
               <Button
                 variant="link2"

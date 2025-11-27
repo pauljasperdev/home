@@ -14,7 +14,7 @@ export function Skills({
   certifications: CertificateType[];
 }) {
   return (
-    <section className="avoid-break flex flex-col gap-2 print:gap-4">
+    <section className="avoid-break flex flex-col gap-2 print:gap-2">
       <h2 className="border-b border-black text-lg font-bold uppercase tracking-wider print:text-sm">
         Certifications & Skills
       </h2>
