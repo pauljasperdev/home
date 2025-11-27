@@ -178,12 +178,6 @@ export const professionalSummary =
     and implementing innovative solutions using modern technologies like Next.js, Python, and Generative AI. \
     Interested in shippping fast with a current tech stack. ";
 
-export const technicalSkills = {
-  languages: "TypeScript, Python, C++, React, Next.js, Nuxt, Node.js, SQL.",
-  cloud: "AWS (Solutions Architect Associate), SST, CDK, Docker, GitLab CI/CD.",
-  dataAI: "GenAI, RAG, Langchain, Numerical Simulation, CFD.",
-};
-
 export const sideProjects: SideProjectType[] = [
   {
     title: "Real Estate Calculator iOS App",
@@ -202,6 +196,5 @@ export const cvData = {
   education: educationSteps,
   certifications: certifications,
   professionalSummary,
-  technicalSkills,
   sideProjects,
 };
