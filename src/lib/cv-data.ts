@@ -24,7 +24,7 @@ export const experienceSteps: StepsType = [
               "Worked closely with the non-technical project manager to ensure the project vision was met.",
             ],
             technologies:
-              "Next.js, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, Docker, GenAI",
+              "Next.js, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, Tailwind CSS, Docker, GenAI",
           },
         ],
       },
@@ -41,7 +41,7 @@ export const experienceSteps: StepsType = [
               "Deployed infrastructure to AWS with CDK and set up CI/CD pipelines in GitLab.",
             ],
             technologies:
-              "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, better-auth, Docker, GenAI, RAG",
+              "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, Tailwind CSS, Docker, GenAI, RAG",
           },
           {
             title: "Text2Tech",
@@ -92,7 +92,7 @@ export const educationSteps: StepsType = [
     company: "University of Applied Science Münster",
     link: "https://www.fh-muenster.de/de/studiengaenge/chemical-engineering-master",
     description:
-      "I studied Chemical Engineering at the University of Applied Science Münster. During my master studies focused on simulation and programming. During my master thesis I extended a CFD solver to simulate viscoelastic fluids.",
+      "I studied Chemical Engineering at the University of Applied Science Münster. In my master studies I focused on simulation and programming. During my master thesis I extended a CFD solver to simulate viscoelastic fluids.",
     positions: [
       {
         title: "M.Sc. Chemical Engineering",
@@ -186,7 +186,7 @@ export const sideProjects: SideProjectType[] = [
       "Development stalled due to family growth.",
     ],
     technologies:
-      "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Tailwind CSS ",
+      "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Nativewind",
     link: "https://github.com/pauljasperdev/immo",
   },
 ];
