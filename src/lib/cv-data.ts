@@ -174,7 +174,7 @@ export const certifications: CertificateType[] = [
 
 export const professionalSummary =
   "Senior Solutions Architect & Full-Stack Engineer shipping production-grade industrial software on AWS.\
-   Architecting and building scalable serverless applications and GenAI solutions with Next.js, TypeScript, and Python.\
+   Architecting and building scalable serverless applications and GenAI solutions with Next.js, TypeScript and Python.\
    Leading technical initiatives at a major automotive joint venture, taking projects from concept to deployment while mentoring teams.\
    Certified Scrum Master and Design Thinking Practitioner.";
 export const sideProjects: SideProjectType[] = [
