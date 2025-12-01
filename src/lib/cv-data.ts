@@ -173,11 +173,10 @@ export const certifications: CertificateType[] = [
 ];
 
 export const professionalSummary =
-  "Experienced Solutions Architect and Full-Stack Engineer with a strong background in software development, cloud infrastructure (AWS),\
-   and industrial applications. Proven track record in leading technical teams, designing scalable architectures,\
-    and implementing innovative solutions using modern technologies like Next.js, Python, and Generative AI. \
-    Interested in shippping fast with a current tech stack. ";
-
+  "Senior Solutions Architect & Full-Stack Engineer shipping production-grade industrial software on AWS.\
+   Architecting and building scalable serverless applications and GenAI solutions with Next.js, TypeScript, and Python.\
+   Leading technical initiatives at a major automotive joint venture, taking projects from concept to deployment while mentoring teams.\
+   Certified Scrum Master and Design Thinking Practitioner.";
 export const sideProjects: SideProjectType[] = [
   {
     title: "Real Estate Calculator iOS App",
