@@ -26,7 +26,7 @@ export const experienceSteps: StepsType = [
               "Worked closely with the non-technical project manager to ensure the project vision was met",
             ],
             technologies:
-              "Next.js, TypeScript, Python, AWS, SST, SQL, Drizzle, tRPC, TanStack Query, better-auth, Tailwind CSS, Docker, GenAI",
+              "Next.js, TypeScript, Python, Drizzle, tRPC, TanStack Query, better-auth, Tailwind CSS, Docker, AWS, SST, SQL, GenAI",
           },
         ],
       },
@@ -43,7 +43,7 @@ export const experienceSteps: StepsType = [
               "Deployed infrastructure to AWS with CDK and set up CI/CD pipelines in GitLab",
             ],
             technologies:
-              "Nuxt, TypeScript, Python, Langchain, AWS, CDK, SQL, Drizzle, tRPC, Tailwind CSS, Docker, GenAI, RAG",
+              "Nuxt, TypeScript, Python, Langchain, FastAPI, Drizzle, tRPC, Tailwind CSS, Docker, AWS, CDK, SQL, GenAI, RAG",
           },
           {
             title: "Text2Tech (BMBF funded)",
