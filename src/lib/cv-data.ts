@@ -133,6 +133,11 @@ export const educationSteps: StepsType = [
 
 export const certifications: CertificateType[] = [
   {
+    title: "AWS Certified Machine Learning Engineer - Associate",
+    description: "AWS",
+    date: "2025",
+  },
+  {
     title: "AWS Certified Solutions Architect - Associate",
     description: "AWS",
     date: "2025",
