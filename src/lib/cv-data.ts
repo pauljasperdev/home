@@ -186,10 +186,20 @@ export const professionalSummary =
    Certified Scrum Master and Design Thinking Practitioner.";
 export const sideProjects: SideProjectType[] = [
   {
+    title: "gemhog.com",
+    description: [
+      "We listen to financial podcasts so you don't have to.",
+      "Investment ideas, trends, and expert takes — delivered to your inbox.",
+      "Pairs podcast theses with accessible financial data for evaluation",
+    ],
+    technologies: "Next.js, TypeScript, Effect-TS, SST, Postgres, AWS",
+    link: "https://gemhog.com",
+  },
+  {
     title: "Real Estate Calculator iOS App",
     description: [
       "Building an iOS app that simplifies real estate calculation for investment",
-      "Development stalled due to family growth",
+      "Development stalled",
     ],
     technologies:
       "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Nativewind",
