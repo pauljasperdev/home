@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "~/components/ui/button";
-import { Mail, Github, MapPin } from "lucide-react";
+import { Mail, Github, MapPin, Twitter } from "lucide-react";
 import Blueskyicon from "./Blueskyicon";
 import Link from "next/link";
 import { DownloadButton } from "./download-button";
@@ -52,6 +52,21 @@ const Welcome = () => {
                 >
                   <Blueskyicon className="size-6" />
                   {/* pauljasper.dev */}
+                </Link>
+              </Button>
+              <Button
+                variant="link2"
+                size="sm"
+                className="w-20 rounded-full"
+                asChild
+              >
+                <Link
+                  href="https://x.com/pauljasperdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-extralight"
+                >
+                  <Twitter className="size-6" />
                 </Link>
               </Button>
               <Button
