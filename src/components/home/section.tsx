@@ -1,36 +1,19 @@
+import type {
+  ProjectType,
+  SideProjectType,
+  PositionType,
+  StepsType,
+  CertificateType,
+} from "~/lib/types";
+export type {
+  ProjectType,
+  SideProjectType,
+  PositionType,
+  StepsType,
+  CertificateType,
+};
+
 import { ArrowUpRight } from "lucide-react";
-
-export type ProjectType = {
-  title: string;
-  description: string | string[];
-  technologies: string;
-  link?: string;
-};
-
-export type SideProjectType = {
-  title: string;
-  description: string | string[];
-  technologies: string;
-  link: string;
-};
-
-export type PositionType = {
-  title: string;
-  date: string;
-  projects: ProjectType[];
-};
-export type StepsType = {
-  company: string;
-  link: string;
-  description?: string;
-  positions: PositionType[];
-}[];
-
-export type CertificateType = {
-  title: string;
-  description: string;
-  date: string;
-};
 
 export function Section({
   title,
@@ -84,7 +67,7 @@ export function Title({
           )}
         </h4>
       )}
-      <span className="text-sm font-extralight leading-relaxed text-zinc-300 sm:text-base">
+      <span className="text-sm leading-relaxed font-extralight text-zinc-300 sm:text-base">
         {date}
       </span>
     </div>

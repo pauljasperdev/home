@@ -13,6 +13,9 @@
 /prisma/db.sqlite-journal
 db.sqlite
 
+# astro
+.astro/
+
 # next.js
 /.next/
 /out/
@@ -44,3 +47,9 @@ yarn-error.log*
 
 # idea files
 .idea
+
+# build output
+/dist
+
+# agent state
+.sisyphus/

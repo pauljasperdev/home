@@ -1,12 +1,10 @@
-"use client";
-
-import Welcome from "./_components/welcome";
 import { useEffect, useRef } from "react";
-import Experience from "./_components/experience";
-import Education, { Certifications } from "./_components/education";
-import Projects from "./_components/projects";
+import Welcome from "~/components/home/Welcome";
+import Experience from "~/components/home/Experience";
+import Education, { Certifications } from "~/components/home/Education";
+import Projects from "~/components/home/Projects";
 
-export default function HomePage() {
+export default function InfiniteScrollHome() {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 

@@ -1,0 +1,48 @@
+---
+import '../styles/globals.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --astro-code-color-text: #e4e4e7;
+        --astro-code-color-background: #18181b;
+        --astro-code-token-constant: #d4d4d8;
+        --astro-code-token-string: #a1a1aa;
+        --astro-code-token-comment: #71717a;
+        --astro-code-token-keyword: #f4f4f5;
+        --astro-code-token-parameter: #d4d4d8;
+        --astro-code-token-function: #e4e4e7;
+        --astro-code-token-string-expression: #a1a1aa;
+        --astro-code-token-punctuation: #71717a;
+        --astro-code-token-link: #a1a1aa;
+      }
+
+      body {
+        font-family: var(--font-space-mono);
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

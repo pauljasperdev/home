@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/cv/Header.astro';
+import Summary from '../components/cv/Summary.astro';
+import Experience from '../components/cv/Experience.astro';
+import Education from '../components/cv/Education.astro';
+import Projects from '../components/cv/Projects.astro';
+import Certifications from '../components/cv/Certifications.astro';
+import { cvData } from '../lib/cv-data';
+---
+
+<Layout title="Paul-Jasper Sahr - CV" description="CV of Paul-Jasper Sahr">
+  <div class="min-h-screen w-full bg-white p-8 font-sans text-black print:p-0">
+    <div class="print-container mx-auto flex max-w-[210mm] flex-col gap-4 bg-white print:gap-5 print:text-[11px]">
+      <Header />
+      <Summary summary={cvData.professionalSummary} />
+      <Experience experience={cvData.experience} />
+      <Projects projects={cvData.sideProjects} />
+      <Certifications certifications={cvData.certifications} />
+      <Education education={cvData.education} />
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  @media print {
+    @page {
+      margin: 0;
+      size: A4;
+    }
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .no-print {
+      display: none !important;
+    }
+    .avoid-break {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .print-container {
+      padding: 0.5cm 1cm !important;
+      max-width: 210mm;
+      margin: 0 auto;
+    }
+  }
+</style>

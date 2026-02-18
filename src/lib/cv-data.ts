@@ -2,7 +2,7 @@ import {
   type StepsType,
   type CertificateType,
   type SideProjectType,
-} from "~/app/_components/section";
+} from "~/lib/types";
 
 export const experienceSteps: StepsType = [
   {

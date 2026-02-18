@@ -1,11 +1,8 @@
-"use client";
-
 import React from "react";
 import { Button } from "~/components/ui/button";
 import { Mail, Github, MapPin, Twitter } from "lucide-react";
 import Blueskyicon from "./Blueskyicon";
-import Link from "next/link";
-import { DownloadButton } from "./download-button";
+import { DownloadButton } from "./DownloadButton";
 
 const Welcome = () => {
   return (
@@ -29,14 +26,14 @@ const Welcome = () => {
                 className="w-20 rounded-full"
                 asChild
               >
-                <Link
+                <a
                   href="https://github.com/pauljasperdev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-lg font-extralight"
                 >
                   <Github className="size-6" />
-                </Link>
+                </a>
               </Button>
               <Button
                 variant="link2"
@@ -44,7 +41,7 @@ const Welcome = () => {
                 className="w-20 rounded-full"
                 asChild
               >
-                <Link
+                <a
                   href="https://bsky.app/profile/pauljasper.dev"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -52,7 +49,7 @@ const Welcome = () => {
                 >
                   <Blueskyicon className="size-6" />
                   {/* pauljasper.dev */}
-                </Link>
+                </a>
               </Button>
               <Button
                 variant="link2"
@@ -60,14 +57,14 @@ const Welcome = () => {
                 className="w-20 rounded-full"
                 asChild
               >
-                <Link
+                <a
                   href="https://x.com/pauljasperdev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-lg font-extralight"
                 >
                   <Twitter className="size-6" />
-                </Link>
+                </a>
               </Button>
               <Button
                 variant="link2"
@@ -75,7 +72,7 @@ const Welcome = () => {
                 className="w-20 rounded-full"
                 asChild
               >
-                <Link
+                <a
                   href="mailto:Paul-Jasper%20Sahr%20<mail@pauljasper.dev>?subject=Hello%20Paul"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -83,7 +80,19 @@ const Welcome = () => {
                 >
                   <Mail className="size-6" />
                   {/* mail@pauljasper.dev */}
-                </Link>
+                </a>
+              </Button>
+              <Button
+                variant="link2"
+                size="sm"
+                className="w-20 rounded-full"
+                asChild
+              >
+                <a href="/blog">
+                  <span className="flex items-center gap-1 text-lg font-extralight">
+                    Blog
+                  </span>
+                </a>
               </Button>
               <DownloadButton />
             </div>

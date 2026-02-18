@@ -1,16 +1,21 @@
-@import 'tailwindcss';
+:root {
+  --font-space-mono:
+    "Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --font-montserrat:
+    "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 
-@plugin 'tailwindcss-animate';
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans:
-    var(--font-montserrat), ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-mono:
-    var(--font-space-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-sans: var(--font-montserrat);
+  --font-mono: var(--font-space-mono);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
