@@ -1,0 +1,134 @@
+---
+interface BlogPost {
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  activePage?: string;
+  showSections?: boolean;
+  blogPosts?: BlogPost[];
+  activePost?: string;
+}
+
+const { activePage = 'home', showSections = false, blogPosts = [], activePost = '' } = Astro.props;
+
+const sections = [
+  { label: 'Welcome', id: 'welcome' },
+  { label: 'Experience', id: 'experience' },
+  { label: 'Projects', id: 'projects' },
+  { label: 'Certifications', id: 'certifications' },
+  { label: 'Education', id: 'education' },
+];
+
+const activeColor = '#e4e4e7';
+const inactiveColor = '#a1a1aa';
+
+function pageLink(isActive: boolean) {
+  return `font-size:0.875rem;color:${isActive ? activeColor : inactiveColor};text-decoration:none;display:block;padding:0.25rem 0.5rem 0.25rem 0.6rem;border-left:2px solid ${isActive ? '#71717a' : 'transparent'};`;
+}
+
+const linkStyle = `font-size:0.875rem;color:${inactiveColor};text-decoration:none;display:block;padding:0.25rem 0.5rem;background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%;`;
+---
+
+<aside style="width:200px;flex-shrink:0;height:100vh;overflow-y:auto;border-right:1px solid #27272a;padding:2rem 1.5rem;display:flex;flex-direction:column;gap:2rem;background-color:#09090b;position:sticky;top:0;">
+  <div>
+    <div style="font-size:1rem;font-weight:500;color:#f4f4f5;letter-spacing:0.05em;">
+      Paul Jasper
+    </div>
+
+  </div>
+
+  {showSections && (
+    <nav style="display:flex;flex-direction:column;gap:0.1rem;">
+      <div style="font-size:0.7rem;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">On this page</div>
+      {sections.map((s) => (
+        <a
+          href={`#${s.id}`}
+          data-nav-section={s.id}
+          style={`font-size:0.85rem;color:#52525b;border-left:2px solid transparent;text-decoration:none;display:block;padding:0.3rem 0.5rem 0.3rem 0.6rem;`}
+        >
+          {s.label}
+        </a>
+      ))}
+    </nav>
+  )}
+
+  {blogPosts.length > 0 && (
+    <nav style="display:flex;flex-direction:column;gap:0.1rem;">
+      <div style="font-size:0.7rem;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Posts</div>
+      {blogPosts.map((p) => {
+        const isActive = p.slug === activePost;
+        return (
+          <a
+            href={`/blog/${p.slug}`}
+            style={`font-size:0.8rem;color:${isActive ? '#e4e4e7' : '#52525b'};border-left:2px solid ${isActive ? '#71717a' : 'transparent'};text-decoration:none;display:block;padding:0.3rem 0.5rem 0.3rem 0.6rem;line-height:1.4;`}
+          >
+            {p.title}
+          </a>
+        );
+      })}
+    </nav>
+  )}
+
+  <nav style={`margin-top:auto;display:flex;flex-direction:column;gap:0.1rem;`}>
+    <a href="/" style={pageLink(activePage === 'home')}>Home</a>
+    <a href="/blog" style={pageLink(activePage === 'blog')}>Blog</a>
+    <button type="button" id="cv-print-btn" style={linkStyle}>↘ CV</button>
+    <a href="https://github.com/pauljasperdev" target="_blank" rel="noopener noreferrer" style={linkStyle}>↗ GitHub</a>
+    <a href="https://x.com/pauljasperdev" target="_blank" rel="noopener noreferrer" style={linkStyle}>↗ Twitter</a>
+    <a href="mailto:mail@pauljasper.dev" style={linkStyle}>↗ Email</a>
+  </nav>
+</aside>
+
+<script>
+  function initSidebar() {
+    document.getElementById('cv-print-btn')?.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.style.cssText = 'position:fixed;width:0;height:0;opacity:0;pointer-events:none;';
+      frame.src = '/cv';
+      frame.onload = () => {
+        const orig = document.title;
+        document.title = 'Paul-Jasper_Sahr_CV';
+        frame.contentWindow?.print();
+        document.title = orig;
+        setTimeout(() => document.body.removeChild(frame), 2000);
+      };
+      document.body.appendChild(frame);
+    });
+
+    const container = document.getElementById('v1-scroll');
+    if (!container) return;
+
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-section]');
+    if (navLinks.length === 0) return;
+
+    function update() {
+      const sections = container!.querySelectorAll<HTMLElement>('[data-section]');
+      if (sections.length === 0) return;
+
+      const scrollTop = container!.scrollTop;
+      const viewportHeight = container!.clientHeight;
+      const detectionLine = scrollTop + viewportHeight * 0.3;
+
+      let active = sections[0];
+      for (const section of sections) {
+        if (section.offsetTop <= detectionLine) {
+          active = section;
+        }
+      }
+
+      const activeName = active?.getAttribute('data-section');
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute('data-nav-section') === activeName;
+        link.style.color = isActive ? '#e4e4e7' : '#52525b';
+        link.style.borderLeftColor = isActive ? '#71717a' : 'transparent';
+      });
+    }
+
+    container.addEventListener('scroll', update, { passive: true });
+    setTimeout(update, 300);
+  }
+
+  document.addEventListener('astro:page-load', initSidebar);
+</script>

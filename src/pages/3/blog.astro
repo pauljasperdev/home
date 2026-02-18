@@ -1,0 +1,46 @@
+---
+import { getCollection, render } from 'astro:content';
+import V1Layout from '~/layouts/V1Layout.astro';
+
+const posts = await getCollection('blog');
+const post = posts[0];
+const { Content } = await render(post);
+---
+<V1Layout title={`${post.data.title} — Paul Jasper`} description={post.data.description}>
+  <div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;background:#09090b;">
+    <header style="height:56px;flex-shrink:0;border-bottom:1px solid #27272a;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:#09090b;">
+      <span style="font-size:0.85rem;font-weight:700;color:#f4f4f5;">Paul Jasper</span>
+      <nav style="display:flex;gap:2rem;">
+        <a href="/3" style="font-size:0.78rem;color:#71717a;text-decoration:none;">Home</a>
+        <a href="/3/blog" style="font-size:0.78rem;color:#f4f4f5;text-decoration:none;">Blog</a>
+        <a href="/cv" style="font-size:0.78rem;color:#71717a;text-decoration:none;">CV</a>
+      </nav>
+    </header>
+    <main style="flex:1;overflow-y:auto;scrollbar-width:none;padding:3rem;">
+      <div style="max-width:680px;margin:0 auto;">
+        <div style="font-size:0.65rem;color:#71717a;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;">— Blog</div>
+        <h1 style="font-size:1.5rem;font-weight:700;color:#f4f4f5;margin-bottom:0.75rem;line-height:1.3;">{post.data.title}</h1>
+        <div style="font-size:0.75rem;color:#52525b;margin-bottom:3rem;">{post.data.date.toISOString().slice(0,10)}</div>
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </main>
+  </div>
+</V1Layout>
+
+<style>
+  main::-webkit-scrollbar { display: none; }
+  .prose { color: #a1a1aa; font-size: 0.85rem; line-height: 1.8; }
+  .prose h2 { color: #f4f4f5; font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; }
+  .prose h3 { color: #d4d4d8; font-size: 0.95rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
+  .prose p { margin-bottom: 1.25rem; }
+  .prose a { color: #a1a1aa; text-decoration: underline; text-underline-offset: 3px; }
+  .prose strong { color: #d4d4d8; font-weight: 600; }
+  .prose em { color: #a1a1aa; font-style: italic; }
+  .prose pre { background: #18181b; border: 1px solid #27272a; border-radius: 4px; padding: 1.25rem; margin: 1.5rem 0; overflow-x: auto; }
+  .prose code { font-family: var(--font-space-mono); font-size: 0.78rem; }
+  .prose :not(pre) > code { background: #18181b; border: 1px solid #27272a; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.78rem; color: #d4d4d8; }
+  .prose ul { padding-left: 1.25rem; margin-bottom: 1.25rem; }
+  .prose li { margin-bottom: 0.4rem; }
+</style>
