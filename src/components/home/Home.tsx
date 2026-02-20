@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import {
   experienceSteps,
   educationSteps,
@@ -6,90 +6,24 @@ import {
   sideProjects,
 } from "~/lib/cv-data";
 
-// Color hierarchy — bright to dim
-const C = {
-  bright: "#f4f4f5", // names, primary headings
-  heading: "#e4e4e7", // secondary headings, position titles
-  sub: "#d4d4d8", // tertiary (project titles, cert titles)
-  body: "#b4b4be", // descriptions, body text
-  muted: "#a1a1aa", // dates, tech stack, subtitle
-  dim: "#71717a", // section labels, nav labels
-  subtle: "#52525b", // inactive nav, arrows, bullet dots
-  bg: "#09090b",
-  border: "#27272a",
-  rule: "#3f3f46",
-  cardBg: "#18181b",
-};
-
-const sectionLabelStyle: React.CSSProperties = {
-  fontSize: "0.75rem",
-  color: C.dim,
-  letterSpacing: "0.15em",
-  textTransform: "uppercase",
-  marginBottom: "2rem",
-};
-
 function WelcomeSection() {
   return (
     <section
       data-section="welcome"
-      style={{
-        padding: "4rem 3rem 3.5rem",
-        borderTop: `1px solid ${C.rule}`,
-        backgroundColor: C.bg,
-        minHeight: "65vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-      }}
+      className="border-rule bg-surface flex min-h-[65vh] flex-col justify-center border-t px-6 pt-16 pb-14 text-center md:px-12 md:text-left"
     >
       <style>{`@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }`}</style>
-      <div style={{ marginBottom: "2.5rem" }}>
-        <div
-          style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontWeight: 700,
-            fontSize: "5.5rem",
-            color: C.bright,
-            lineHeight: 0.95,
-            letterSpacing: "0.02em",
-          }}
-        >
+      <div className="mb-10">
+        <div className="text-bright font-mono text-[5.5rem] leading-[0.95] font-bold tracking-[0.02em]">
           Paul Jasper
         </div>
-        <div
-          style={{
-            marginTop: "1.5rem",
-            width: "3rem",
-            height: "2px",
-            backgroundColor: C.rule,
-          }}
-        />
+        <div className="bg-rule mx-auto mt-6 h-[2px] w-12 md:mx-0" />
       </div>
-      <div
-        style={{
-          fontSize: "0.9rem",
-          color: C.muted,
-          letterSpacing: "0.05em",
-          marginBottom: "0.5rem",
-        }}
-      >
+      <div className="text-muted mb-2 text-[0.9rem] tracking-[0.05em]">
         Solutions Architect, Full-Stack Engineer and Design Thinker
       </div>
-      <div
-        style={{
-          fontSize: "0.82rem",
-          color: C.dim,
-          display: "flex",
-          alignItems: "center",
-          gap: "0.4rem",
-        }}
-      >
-        <span
-          style={{ fontSize: "1.3rem", position: "relative", top: "-0.15rem" }}
-        >
-          ▾
-        </span>
+      <div className="text-dim flex items-center justify-center gap-[0.4rem] text-[0.82rem] md:justify-start">
+        <span className="relative -top-[0.15rem] text-[1.3rem]">▾</span>
         Oldenburg, Germany
       </div>
     </section>
@@ -98,130 +32,55 @@ function WelcomeSection() {
 
 function ExperienceSection() {
   return (
-    <section
-      data-section="experience"
-      style={{ padding: "3rem", borderTop: `1px solid ${C.border}` }}
-    >
-      <div style={sectionLabelStyle}>— Experience</div>
+    <section data-section="experience" className="border-edge border-t p-12">
+      <div className="text-dim mb-8 text-xs tracking-[0.15em] uppercase">
+        — Experience
+      </div>
       {experienceSteps.map((step) => (
-        <div key={step.company} style={{ marginBottom: "2.5rem" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: "0.5rem",
-              marginBottom: "1.5rem",
-            }}
-          >
+        <div key={step.company} className="mb-10">
+          <div className="mb-6 flex items-baseline gap-2">
             <a
               href={step.link}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontSize: "1.05rem",
-                fontWeight: 500,
-                color: C.bright,
-                textDecoration: "none",
-              }}
+              className="text-bright text-[1.05rem] font-medium no-underline"
             >
               {step.company}
             </a>
-            <span style={{ fontSize: "0.8rem", color: C.subtle }}>↗</span>
+            <span className="text-subtle text-[0.8rem]">↗</span>
           </div>
           {step.positions.map((pos) => (
-            <div key={pos.title} style={{ marginBottom: "1.5rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  marginBottom: "0.75rem",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "0.95rem",
-                    color: C.heading,
-                  }}
-                >
-                  {pos.title}
-                </span>
-                <span style={{ fontSize: "0.82rem", color: C.muted }}>
-                  {pos.date}
-                </span>
+            <div key={pos.title} className="mb-6">
+              <div className="mb-3 flex items-baseline justify-between">
+                <span className="text-heading text-[0.95rem]">{pos.title}</span>
+                <span className="text-muted text-[0.82rem]">{pos.date}</span>
               </div>
               {pos.projects.map((proj) => (
                 <div
                   key={proj.title}
-                  style={{
-                    marginBottom: "1rem",
-                    paddingLeft: "1rem",
-                    borderLeft: `1px solid ${C.border}`,
-                  }}
+                  className="border-edge mb-4 border-l pl-4"
                 >
-                  <div
-                    style={{
-                      fontSize: "0.92rem",
-                      color: C.sub,
-                      marginBottom: "0.5rem",
-                    }}
-                  >
+                  <div className="text-sub mb-2 text-[0.92rem]">
                     {proj.title}
                   </div>
                   {typeof proj.description === "string" ? (
-                    <p
-                      style={{
-                        fontSize: "0.9rem",
-                        color: C.body,
-                        marginBottom: "0.5rem",
-                        lineHeight: 1.7,
-                      }}
-                    >
+                    <p className="text-body mb-2 text-[0.9rem] leading-[1.7]">
                       {proj.description}
                     </p>
                   ) : (
-                    <ul
-                      style={{
-                        listStyle: "none",
-                        padding: 0,
-                        margin: "0 0 0.5rem",
-                      }}
-                    >
+                    <ul className="mb-2 list-none p-0">
                       {proj.description.map((d: string) => (
                         <li
                           key={d}
-                          style={{
-                            fontSize: "0.9rem",
-                            color: C.body,
-                            lineHeight: 1.7,
-                            paddingLeft: "0.75rem",
-                            position: "relative",
-                            marginBottom: "0.3rem",
-                          }}
+                          className="text-body relative mb-[0.3rem] pl-3 text-[0.9rem] leading-[1.7]"
                         >
-                          <span
-                            style={{
-                              position: "absolute",
-                              left: 0,
-                              color: C.subtle,
-                            }}
-                          >
-                            ·
-                          </span>
+                          <span className="text-subtle absolute left-0">·</span>
                           {d}
                         </li>
                       ))}
                     </ul>
                   )}
-                  <div
-                    style={{
-                      fontSize: "0.78rem",
-                      color: C.muted,
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontStyle: "italic",
-                      marginTop: "0.25rem",
-                    }}
-                  >
+                  <div className="text-muted mt-1 font-mono text-[0.78rem] italic">
                     {proj.technologies}
                   </div>
                 </div>
@@ -236,69 +95,35 @@ function ExperienceSection() {
 
 function ProjectsSection() {
   return (
-    <section
-      data-section="projects"
-      style={{ padding: "3rem", borderTop: `1px solid ${C.border}` }}
-    >
-      <div style={sectionLabelStyle}>— Side Projects</div>
+    <section data-section="projects" className="border-edge border-t p-12">
+      <div className="text-dim mb-8 text-xs tracking-[0.15em] uppercase">
+        — Side Projects
+      </div>
       {sideProjects.map((proj) => (
-        <div key={proj.title} style={{ marginBottom: "2.5rem" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: "0.5rem",
-              marginBottom: "1rem",
-            }}
-          >
+        <div key={proj.title} className="mb-10">
+          <div className="mb-4 flex items-baseline gap-2">
             <a
               href={proj.link}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontSize: "1.05rem",
-                fontWeight: 500,
-                color: C.bright,
-                textDecoration: "none",
-              }}
+              className="text-bright text-[1.05rem] font-medium no-underline"
             >
               {proj.title}
             </a>
-            <span style={{ fontSize: "0.8rem", color: C.subtle }}>↗</span>
+            <span className="text-subtle text-[0.8rem]">↗</span>
           </div>
           {Array.isArray(proj.description) ? (
             proj.description.map((d: string) => (
-              <p
-                key={d}
-                style={{
-                  fontSize: "0.9rem",
-                  color: C.body,
-                  lineHeight: 1.7,
-                  marginBottom: "0.25rem",
-                }}
-              >
+              <p key={d} className="text-body mb-1 text-[0.9rem] leading-[1.7]">
                 {d}
               </p>
             ))
           ) : (
-            <p
-              style={{
-                fontSize: "0.9rem",
-                color: C.body,
-                lineHeight: 1.7,
-              }}
-            >
+            <p className="text-body text-[0.9rem] leading-[1.7]">
               {proj.description}
             </p>
           )}
-          <div
-            style={{
-              marginTop: "0.5rem",
-              fontSize: "0.78rem",
-              color: C.muted,
-              fontStyle: "italic",
-            }}
-          >
+          <div className="text-muted mt-2 text-[0.78rem] italic">
             {proj.technologies}
           </div>
         </div>
@@ -311,43 +136,24 @@ function CertificationsSection() {
   return (
     <section
       data-section="certifications"
-      style={{ padding: "3rem", borderTop: `1px solid ${C.border}` }}
+      className="border-edge border-t p-12"
     >
-      <div style={sectionLabelStyle}>— Certifications</div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+      <div className="text-dim mb-8 text-xs tracking-[0.15em] uppercase">
+        — Certifications
+      </div>
+      <div className="flex flex-col gap-3">
         {certifications.map((cert) => (
           <div
             key={cert.title}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "baseline",
-              paddingBottom: "0.75rem",
-              borderBottom: `1px solid ${C.cardBg}`,
-            }}
+            className="border-card flex items-baseline justify-between border-b pb-3"
           >
             <div>
-              <div
-                style={{
-                  fontSize: "0.95rem",
-                  color: C.sub,
-                  marginBottom: "0.15rem",
-                }}
-              >
+              <div className="text-sub mb-[0.15rem] text-[0.95rem]">
                 {cert.title}
               </div>
-              <div style={{ fontSize: "0.82rem", color: C.dim }}>
-                {cert.description}
-              </div>
+              <div className="text-dim text-[0.82rem]">{cert.description}</div>
             </div>
-            <div
-              style={{
-                fontSize: "0.82rem",
-                color: C.muted,
-                flexShrink: 0,
-                marginLeft: "1rem",
-              }}
-            >
+            <div className="text-muted ml-4 shrink-0 text-[0.82rem]">
               {cert.date}
             </div>
           </div>
@@ -359,53 +165,27 @@ function CertificationsSection() {
 
 function EducationSection() {
   return (
-    <section
-      data-section="education"
-      style={{ padding: "3rem", borderTop: `1px solid ${C.border}` }}
-    >
-      <div style={sectionLabelStyle}>— Education</div>
+    <section data-section="education" className="border-edge border-t p-12">
+      <div className="text-dim mb-8 text-xs tracking-[0.15em] uppercase">
+        — Education
+      </div>
       {educationSteps.map((step) => (
-        <div key={step.company} style={{ marginBottom: "2rem" }}>
+        <div key={step.company} className="mb-8">
           <a
             href={step.link}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              fontSize: "1rem",
-              fontWeight: 500,
-              color: C.bright,
-              textDecoration: "none",
-              display: "block",
-              marginBottom: "0.5rem",
-            }}
+            className="text-bright mb-2 block text-base font-medium no-underline"
           >
             {step.company}
           </a>
-          <p
-            style={{
-              fontSize: "0.9rem",
-              color: C.body,
-              lineHeight: 1.7,
-              marginBottom: "1rem",
-            }}
-          >
+          <p className="text-body mb-4 text-[0.9rem] leading-[1.7]">
             {step.description}
           </p>
           {step.positions.map((pos) => (
-            <div
-              key={pos.title}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "0.5rem",
-              }}
-            >
-              <span style={{ fontSize: "0.92rem", color: C.heading }}>
-                {pos.title}
-              </span>
-              <span style={{ fontSize: "0.82rem", color: C.muted }}>
-                {pos.date}
-              </span>
+            <div key={pos.title} className="mb-2 flex justify-between">
+              <span className="text-heading text-[0.92rem]">{pos.title}</span>
+              <span className="text-muted text-[0.82rem]">{pos.date}</span>
             </div>
           ))}
         </div>
@@ -418,7 +198,7 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const container = containerRef.current;
     const content = contentRef.current;
     if (!container || !content) return;
@@ -461,6 +241,7 @@ export default function Home() {
       if (cycleHeight > 0) {
         const delta = container.scrollTop - cycleOffset;
         sessionStorage.setItem("v1-scroll-delta", String(delta));
+        sessionStorage.setItem("v1-scroll-top", String(container.scrollTop));
       }
     };
     container.addEventListener("scroll", saveScroll, { passive: true });
@@ -498,18 +279,10 @@ export default function Home() {
     <div
       id="v1-scroll"
       ref={containerRef}
-      style={{
-        flex: 1,
-        height: "100vh",
-        overflowY: "auto",
-        scrollbarWidth: "none",
-      }}
+      className="h-dvh flex-1 overflow-y-auto [scrollbar-width:none]"
     >
       <style>{`#v1-scroll::-webkit-scrollbar { display: none; }`}</style>
-      <div
-        ref={contentRef}
-        style={{ display: "flex", flexDirection: "column" }}
-      >
+      <div ref={contentRef} className="flex flex-col">
         {cycle}
         {cycle}
         {cycle}

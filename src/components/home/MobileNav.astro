@@ -1,0 +1,209 @@
+---
+interface BlogPost {
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  activePage?: string;
+  showSections?: boolean;
+  blogPosts?: BlogPost[];
+  activePost?: string;
+}
+
+const { activePage = 'home', showSections = false, blogPosts = [], activePost = '' } = Astro.props;
+
+const sections = [
+  { label: 'Welcome', id: 'welcome' },
+  { label: 'Experience', id: 'experience' },
+  { label: 'Projects', id: 'projects' },
+  { label: 'Certifications', id: 'certifications' },
+  { label: 'Education', id: 'education' },
+];
+---
+
+<!-- Sticky header bar - only shown on mobile (parent V1Layout will do md:hidden) -->
+<div class="sticky top-0 z-40 relative flex items-center justify-between px-5 h-14 bg-surface border-b border-edge">
+  <img src="/profile.svg" alt="Paul Jasper" class="w-9 h-9 rounded-md object-cover" />
+  <span class="absolute inset-0 flex items-center justify-center font-mono text-base font-medium text-bright tracking-wide pointer-events-none">Paul Jasper</span>
+  <button id="mobile-menu-btn" aria-label="Open navigation" class="p-2 text-dim hover:text-bright transition-colors">
+    <!-- Hamburger SVG: 3 horizontal lines -->
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="5" width="16" height="1.5" rx="0.75" fill="currentColor"/>
+      <rect x="2" y="9.25" width="16" height="1.5" rx="0.75" fill="currentColor"/>
+      <rect x="2" y="13.5" width="16" height="1.5" rx="0.75" fill="currentColor"/>
+    </svg>
+  </button>
+</div>
+
+{showSections && (
+  <div class="relative sticky top-14 z-30 bg-surface border-b border-edge">
+    <button id="section-tracker-btn" class="w-full flex items-center gap-2 px-5 h-10 text-left cursor-pointer bg-transparent border-none font-mono">
+      <span class="text-dim text-[0.7rem] tracking-[0.12em] uppercase">On this page</span>
+      <span class="text-dim text-xs">▾</span>
+      <span id="section-tracker-name" class="text-heading text-sm font-medium">Welcome</span>
+    </button>
+    <div id="section-dropdown" class="hidden absolute left-0 right-0 top-full bg-surface border-b border-edge z-30">
+      {sections.map((s) => (
+        <button
+          data-section-dropdown={s.id}
+          class="w-full flex items-center justify-between px-5 py-3 text-sm text-left border-t border-edge hover:bg-card cursor-pointer bg-transparent font-mono"
+        >
+          <span class="text-sub">{s.label}</span>
+          <span data-section-check={s.id} class="hidden text-dim text-sm">✓</span>
+        </button>
+      ))}
+    </div>
+  </div>
+)}
+
+<!-- Full-screen dialog drawer -->
+<dialog id="mobile-nav-dialog" class="m-0 p-0 w-full h-full max-w-full max-h-full bg-surface text-bright">
+  <!-- Header row with close button -->
+  <div class="relative flex items-center justify-between px-5 h-14 border-b border-edge">
+    <img src="/profile.svg" alt="Paul Jasper" class="w-9 h-9 rounded-md object-cover" />
+    <span class="absolute inset-0 flex items-center justify-center font-mono text-base font-medium text-bright tracking-wide pointer-events-none">Paul Jasper</span>
+    <button id="mobile-menu-close" aria-label="Close navigation" class="p-2 text-dim hover:text-bright transition-colors">
+      <!-- X icon -->
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="16" y1="4" x2="4" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Nav links only — NO profile image, NO sections, NO blog posts -->
+  <nav class="flex flex-col gap-1 px-6 py-6">
+    <a href="/" class={`text-sm py-1 px-2 no-underline block border-l-2 ${activePage === 'home' ? 'text-heading border-dim' : 'text-muted border-transparent'}`}>Home</a>
+    <a href="/blog" class={`text-sm py-1 px-2 no-underline block border-l-2 ${activePage === 'blog' ? 'text-heading border-dim' : 'text-muted border-transparent'}`}>Blog</a>
+    <button type="button" id="mobile-cv-print-btn" class="text-sm text-muted py-1 px-2 no-underline block text-left w-full bg-transparent border-none cursor-pointer font-mono border-l-2 border-transparent">↘ CV</button>
+    <a href="https://github.com/pauljasperdev" target="_blank" rel="noopener noreferrer" class="text-sm text-muted py-1 px-2 no-underline block border-l-2 border-transparent">↗ GitHub</a>
+    <a href="https://x.com/pauljasperdev" target="_blank" rel="noopener noreferrer" class="text-sm text-muted py-1 px-2 no-underline block border-l-2 border-transparent">↗ Twitter</a>
+    <a href="mailto:mail@pauljasper.dev" class="text-sm text-muted py-1 px-2 no-underline block border-l-2 border-transparent">↗ Email</a>
+  </nav>
+</dialog>
+
+<style>
+  #mobile-nav-dialog {
+    border: none;
+    outline: none;
+  }
+  #mobile-nav-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  /* Remove font-family override from body for dialog */
+  #mobile-nav-dialog * {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+</style>
+
+<script>
+  function initMobileNav() {
+    // --- Hamburger dialog ---
+    const btn = document.getElementById('mobile-menu-btn');
+    const dialog = document.getElementById('mobile-nav-dialog') as HTMLDialogElement;
+    const closeBtn = document.getElementById('mobile-menu-close');
+    btn?.addEventListener('click', () => dialog?.showModal());
+    closeBtn?.addEventListener('click', () => dialog?.close());
+
+    // --- CV print handler (preserve exactly) ---
+    document.getElementById('mobile-cv-print-btn')?.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.style.cssText = 'position:fixed;width:0;height:0;opacity:0;pointer-events:none;';
+      frame.src = '/cv';
+      frame.onload = () => {
+        const orig = document.title;
+        document.title = 'Paul-Jasper_Sahr_CV';
+        frame.contentWindow?.print();
+        document.title = orig;
+        setTimeout(() => document.body.removeChild(frame), 2000);
+      };
+      document.body.appendChild(frame);
+    });
+
+    // --- Section tracker + scroll spy ---
+    const container = document.getElementById('v1-scroll');
+    if (!container) return;
+
+    const sections = [
+      { label: 'Welcome', id: 'welcome' },
+      { label: 'Experience', id: 'experience' },
+      { label: 'Projects', id: 'projects' },
+      { label: 'Certifications', id: 'certifications' },
+      { label: 'Education', id: 'education' },
+    ];
+
+    const trackerName = document.getElementById('section-tracker-name');
+    const trackerBtn = document.getElementById('section-tracker-btn');
+    const dropdown = document.getElementById('section-dropdown');
+
+    // --- Scroll spy update ---
+    function update() {
+      const sectionEls = container!.querySelectorAll<HTMLElement>('[data-section]');
+      if (sectionEls.length === 0) return;
+
+      const scrollTop = container!.scrollTop;
+      const viewportHeight = container!.clientHeight;
+      const detectionLine = scrollTop + viewportHeight * 0.3;
+
+      let active = sectionEls[0];
+      for (const section of sectionEls) {
+        if (section.offsetTop <= detectionLine) {
+          active = section;
+        }
+      }
+
+      const activeName = active?.getAttribute('data-section');
+
+      // Update tracker bar text
+      if (trackerName && activeName) {
+        const found = sections.find(s => s.id === activeName);
+        if (found) trackerName.textContent = found.label;
+      }
+
+      // Update dropdown checkmarks
+      document.querySelectorAll<HTMLElement>('[data-section-check]').forEach(el => {
+        el.classList.toggle('hidden', el.getAttribute('data-section-check') !== activeName);
+      });
+    }
+
+    // --- Dropdown toggle ---
+    trackerBtn?.addEventListener('click', () => {
+      dropdown?.classList.toggle('hidden');
+    });
+
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!trackerBtn?.contains(e.target as Node) && !dropdown?.contains(e.target as Node)) {
+        dropdown?.classList.add('hidden');
+      }
+    });
+
+    // Close dropdown on scroll
+    container.addEventListener('scroll', () => {
+      dropdown?.classList.add('hidden');
+    }, { passive: true });
+
+    // Section click → scroll to nearest copy + close dropdown
+    document.querySelectorAll<HTMLButtonElement>('[data-section-dropdown]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-section-dropdown');
+        if (!id) return;
+        const targets = [...container!.querySelectorAll<HTMLElement>(`[data-section="${id}"]`)];
+        if (targets.length === 0) return;
+        const nearest = targets.reduce((best, el) => {
+          const distEl = Math.abs(el.offsetTop - container!.scrollTop);
+          const distBest = Math.abs(best.offsetTop - container!.scrollTop);
+          return distEl < distBest ? el : best;
+        });
+        nearest.scrollIntoView({ block: 'start' });
+        dropdown?.classList.add('hidden');
+      });
+    });
+
+    // Bind scroll spy
+    container.addEventListener('scroll', update, { passive: true });
+    setTimeout(update, 300);
+  }
+
+  document.addEventListener('astro:page-load', initMobileNav);
+</script>

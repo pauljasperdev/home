@@ -20,33 +20,27 @@ const sections = [
   { label: 'Certifications', id: 'certifications' },
   { label: 'Education', id: 'education' },
 ];
-
-const activeColor = '#e4e4e7';
-const inactiveColor = '#a1a1aa';
-
-function pageLink(isActive: boolean) {
-  return `font-size:0.875rem;color:${isActive ? activeColor : inactiveColor};text-decoration:none;display:block;padding:0.25rem 0.5rem 0.25rem 0.6rem;border-left:2px solid ${isActive ? '#71717a' : 'transparent'};`;
-}
-
-const linkStyle = `font-size:0.875rem;color:${inactiveColor};text-decoration:none;display:block;padding:0.25rem 0.5rem;background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;width:100%;`;
 ---
 
-<aside style="width:200px;flex-shrink:0;height:100vh;overflow-y:auto;border-right:1px solid #27272a;padding:2rem 1.5rem;display:flex;flex-direction:column;gap:2rem;background-color:#09090b;position:sticky;top:0;">
-  <div>
-    <div style="font-size:1rem;font-weight:500;color:#f4f4f5;letter-spacing:0.05em;">
+<aside class="hidden md:flex w-[200px] shrink-0 h-dvh overflow-y-auto border-r border-edge px-6 py-8 flex-col gap-8 bg-surface sticky top-0">
+  <div class="flex flex-col gap-4 items-start">
+    <div class="rounded-md overflow-hidden">
+      <img src="/profile.svg" alt="Logo" class="w-full h-auto block" />
+    </div>
+    <div class="text-base font-medium text-bright tracking-wide">
       Paul Jasper
     </div>
 
   </div>
 
   {showSections && (
-    <nav style="display:flex;flex-direction:column;gap:0.1rem;">
-      <div style="font-size:0.7rem;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">On this page</div>
+    <nav class="flex flex-col gap-[0.1rem]">
+      <div class="text-[0.7rem] text-subtle tracking-[0.12em] uppercase mb-2">On this page</div>
       {sections.map((s) => (
         <a
           href={`#${s.id}`}
           data-nav-section={s.id}
-          style={`font-size:0.85rem;color:#52525b;border-left:2px solid transparent;text-decoration:none;display:block;padding:0.3rem 0.5rem 0.3rem 0.6rem;`}
+          class="text-[0.85rem] text-subtle border-l-2 border-transparent no-underline block py-[0.3rem] px-2 pl-[0.6rem]"
         >
           {s.label}
         </a>
@@ -55,14 +49,14 @@ const linkStyle = `font-size:0.875rem;color:${inactiveColor};text-decoration:non
   )}
 
   {blogPosts.length > 0 && (
-    <nav style="display:flex;flex-direction:column;gap:0.1rem;">
-      <div style="font-size:0.7rem;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Posts</div>
+    <nav class="flex flex-col gap-[0.1rem]">
+      <div class="text-[0.7rem] text-subtle tracking-[0.12em] uppercase mb-2">Posts</div>
       {blogPosts.map((p) => {
         const isActive = p.slug === activePost;
         return (
           <a
             href={`/blog/${p.slug}`}
-            style={`font-size:0.8rem;color:${isActive ? '#e4e4e7' : '#52525b'};border-left:2px solid ${isActive ? '#71717a' : 'transparent'};text-decoration:none;display:block;padding:0.3rem 0.5rem 0.3rem 0.6rem;line-height:1.4;`}
+            class={`text-[0.8rem] no-underline block py-[0.3rem] px-2 pl-[0.6rem] leading-[1.4] border-l-2 ${isActive ? 'text-heading border-dim' : 'text-subtle border-transparent'}`}
           >
             {p.title}
           </a>
@@ -71,13 +65,13 @@ const linkStyle = `font-size:0.875rem;color:${inactiveColor};text-decoration:non
     </nav>
   )}
 
-  <nav style={`margin-top:auto;display:flex;flex-direction:column;gap:0.1rem;`}>
-    <a href="/" style={pageLink(activePage === 'home')}>Home</a>
-    <a href="/blog" style={pageLink(activePage === 'blog')}>Blog</a>
-    <button type="button" id="cv-print-btn" style={linkStyle}>↘ CV</button>
-    <a href="https://github.com/pauljasperdev" target="_blank" rel="noopener noreferrer" style={linkStyle}>↗ GitHub</a>
-    <a href="https://x.com/pauljasperdev" target="_blank" rel="noopener noreferrer" style={linkStyle}>↗ Twitter</a>
-    <a href="mailto:mail@pauljasper.dev" style={linkStyle}>↗ Email</a>
+  <nav class="mt-auto flex flex-col gap-[0.1rem]">
+    <a href="/" class={`text-sm no-underline block py-1 px-2 pl-[0.6rem] border-l-2 ${activePage === 'home' ? 'text-heading border-dim' : 'text-muted border-transparent'}`}>Home</a>
+    <a href="/blog" class={`text-sm no-underline block py-1 px-2 pl-[0.6rem] border-l-2 ${activePage === 'blog' ? 'text-heading border-dim' : 'text-muted border-transparent'}`}>Blog</a>
+    <button type="button" id="cv-print-btn" class="text-sm text-muted no-underline block py-1 px-2 bg-transparent border-none cursor-pointer font-mono text-left w-full">↘ CV</button>
+    <a href="https://github.com/pauljasperdev" target="_blank" rel="noopener noreferrer" class="text-sm text-muted no-underline block py-1 px-2 bg-transparent border-none cursor-pointer font-mono text-left w-full">↗ GitHub</a>
+    <a href="https://x.com/pauljasperdev" target="_blank" rel="noopener noreferrer" class="text-sm text-muted no-underline block py-1 px-2 bg-transparent border-none cursor-pointer font-mono text-left w-full">↗ Twitter</a>
+    <a href="mailto:mail@pauljasper.dev" class="text-sm text-muted no-underline block py-1 px-2 bg-transparent border-none cursor-pointer font-mono text-left w-full">↗ Email</a>
   </nav>
 </aside>
 
