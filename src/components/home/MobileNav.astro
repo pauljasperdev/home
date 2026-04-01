@@ -105,7 +105,7 @@ const sections = [
     btn?.addEventListener('click', () => dialog?.showModal());
     closeBtn?.addEventListener('click', () => dialog?.close());
 
-    // --- CV print handler (preserve exactly) ---
+    // --- CV print handler ---
     document.getElementById('mobile-cv-print-btn')?.addEventListener('click', () => {
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && navigator.maxTouchPoints > 0;
       if (isIOS) {
