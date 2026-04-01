@@ -78,17 +78,22 @@ const sections = [
 <script>
   function initSidebar() {
     document.getElementById('cv-print-btn')?.addEventListener('click', () => {
-      const frame = document.createElement('iframe');
-      frame.style.cssText = 'position:fixed;width:0;height:0;opacity:0;pointer-events:none;';
-      frame.src = '/cv';
-      frame.onload = () => {
-        const orig = document.title;
-        document.title = 'Paul-Jasper_Sahr_CV';
-        frame.contentWindow?.print();
-        document.title = orig;
-        setTimeout(() => document.body.removeChild(frame), 2000);
-      };
-      document.body.appendChild(frame);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && navigator.maxTouchPoints > 0;
+      if (isIOS) {
+        window.open('/Paul-Jasper_Sahr_CV.pdf', '_blank');
+      } else {
+        const frame = document.createElement('iframe');
+        frame.style.cssText = 'position:fixed;width:0;height:0;opacity:0;pointer-events:none;';
+        frame.src = '/cv';
+        frame.onload = () => {
+          const orig = document.title;
+          document.title = 'Paul-Jasper_Sahr_CV';
+          frame.contentWindow?.print();
+          document.title = orig;
+          setTimeout(() => document.body.removeChild(frame), 2000);
+        };
+        document.body.appendChild(frame);
+      }
     });
 
     const container = document.getElementById('v1-scroll');
