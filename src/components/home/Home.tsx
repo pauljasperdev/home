@@ -221,10 +221,10 @@ export default function Home() {
     };
 
     const handleScroll = () => {
-      if (container.scrollTop < 5) {
-        container.scrollTop += cycleHeight;
-      } else if (container.scrollTop >= cycleHeight * 2 - 5) {
-        container.scrollTop -= cycleHeight;
+      if (container.scrollTop < 100) {
+        requestAnimationFrame(() => { container.scrollTop += cycleHeight; });
+      } else if (container.scrollTop >= cycleHeight * 2 - 100) {
+        requestAnimationFrame(() => { container.scrollTop -= cycleHeight; });
       }
     };
 
@@ -280,6 +280,7 @@ export default function Home() {
       id="v1-scroll"
       ref={containerRef}
       className="h-dvh flex-1 overflow-y-auto [scrollbar-width:none]"
+      style={{ overscrollBehavior: 'contain' }}
     >
       <style>{`#v1-scroll::-webkit-scrollbar { display: none; }`}</style>
       <div ref={contentRef} className="flex flex-col">
