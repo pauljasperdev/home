@@ -53,3 +53,4 @@ yarn-error.log*
 
 # agent state
 .sisyphus/
+.playwright-mcp/
