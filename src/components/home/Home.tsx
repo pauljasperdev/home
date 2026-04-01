@@ -220,7 +220,39 @@ export default function Home() {
         container.scrollTop + (duplicateRect.top - containerRect.top);
     };
 
+    let lastScrollTop = 0;
+    let lastScrollTime = 0;
+    let scrollVelocity = 0;
+    let jumpPending: number | null = null;
+
     const handleScroll = () => {
+      const now = performance.now();
+      const dt = now - lastScrollTime;
+      if (dt > 0) {
+        scrollVelocity = Math.abs(container.scrollTop - lastScrollTop) / dt;
+      }
+      lastScrollTop = container.scrollTop;
+      lastScrollTime = now;
+
+      const VELOCITY_THRESHOLD = 0.5; // px/ms — defer jump if scrolling fast
+      const needsJump =
+        container.scrollTop < 100 || container.scrollTop >= cycleHeight * 2 - 100;
+
+      if (needsJump && scrollVelocity > VELOCITY_THRESHOLD) {
+        // Momentum active — schedule deferred re-check after one frame
+        if (jumpPending !== null) cancelAnimationFrame(jumpPending);
+        jumpPending = requestAnimationFrame(() => {
+          jumpPending = null;
+          handleScroll(); // re-check once momentum subsides
+        });
+        return;
+      }
+
+      if (jumpPending !== null) {
+        cancelAnimationFrame(jumpPending);
+        jumpPending = null;
+      }
+
       if (container.scrollTop < 100) {
         requestAnimationFrame(() => { container.scrollTop += cycleHeight; });
       } else if (container.scrollTop >= cycleHeight * 2 - 100) {
@@ -262,6 +294,7 @@ export default function Home() {
       container.removeEventListener("scroll", saveScroll);
       window.removeEventListener("resize", handleWindowResize);
       ro.disconnect();
+      if (jumpPending !== null) cancelAnimationFrame(jumpPending);
     };
   }, []);
 
