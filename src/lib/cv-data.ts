@@ -18,6 +18,15 @@ export const experienceSteps: StepsType = [
         date: "since 01/2025",
         projects: [
           {
+            title: "ML Monitoring Infrastructure for Logistics ETA Models",
+            description: [
+              "Implemented custom data capture for SageMaker Serverless Inference endpoints",
+              "Set up infrastructure for monitoring dashboards and operational alerts",
+            ],
+            technologies:
+              "AWS, SageMaker Model Monitor, CDK, CloudFormation, Athena, DynamoDB, S3, CloudWatch, Python",
+          },
+          {
             title: "Rule Mining",
             description: [
               "Led development of a web app to extract technical rules from unstructured documents",
@@ -181,8 +190,9 @@ export const certifications: CertificateType[] = [
 
 export const professionalSummary =
   "Senior Solutions Architect & Full-Stack Engineer shipping production-grade industrial software on AWS.\
-   Architecting and building scalable serverless applications and GenAI solutions with Next.js, TypeScript and Python.\
+   Architecting scalable cloud applications, GenAI solutions and ML infrastructure with TypeScript and Python.\
    Leading technical initiatives at a major automotive joint venture, taking projects from concept to deployment while mentoring teams.\
+   Active in the local founder scene and building independent products while exploring future venture ideas.\
    Certified Scrum Master and Design Thinking Practitioner.";
 export const sideProjects: SideProjectType[] = [
   {
