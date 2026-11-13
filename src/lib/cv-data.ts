@@ -18,16 +18,16 @@ export const experienceSteps: StepsType = [
         date: "since 10/2026",
         projects: [
           {
-            title: "Founder",
+            title: "Company",
             description: [
               "Awarded the Niedersächsisches Gründerstipendium for gemhog, funded until 06/2027",
-              "Building an app that helps retail investors find the podcast episodes relevant to their stocks: trending companies, bullish and bearish arguments, sector deep dives",
+              "Building an app that helps retail investors find podcast episodes about their stocks: trending companies, bullish and bearish arguments, deep dives",
             ],
           },
           {
             title: "Engineering",
             description: [
-              "Building the product as an installable PWA, marketing site and API on Cloudflare Workers, with auth, subscription payments, email, analytics and error tracking",
+              "Building the product as an installable PWA, marketing site and API on Cloudflare Workers, with auth, subscription payments, email and analytics",
               "AI pipeline that transcribes podcast episodes and uses Claude to detect the companies discussed and find strong takes and deep dives",
               "Infrastructure as code with SST, CI/CD with preview deployments for each pull request, unit, integration and end-to-end tests",
             ],
