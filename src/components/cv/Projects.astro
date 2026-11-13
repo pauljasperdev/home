@@ -7,6 +7,7 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
+{projects.length > 0 && (
 <section class="flex flex-col gap-2 print:gap-0.5">
   <h2 class="border-b border-black text-lg font-bold tracking-wider uppercase print:text-sm">
     Projects
@@ -52,3 +53,4 @@ const { projects } = Astro.props;
     </ul>
   </div>
 </section>
+)}

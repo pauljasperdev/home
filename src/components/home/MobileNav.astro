@@ -1,4 +1,6 @@
 ---
+import { sideProjects } from '~/lib/cv-data';
+
 interface BlogPost {
   slug: string;
   title: string;
@@ -19,7 +21,7 @@ const sections = [
   { label: 'Projects', id: 'projects' },
   { label: 'Certifications', id: 'certifications' },
   { label: 'Education', id: 'education' },
-];
+].filter((s) => s.id !== 'projects' || sideProjects.length > 0);
 ---
 
 <!-- Sticky header bar - only shown on mobile (parent V1Layout will do md:hidden) -->

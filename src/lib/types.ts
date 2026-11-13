@@ -1,7 +1,7 @@
 export type ProjectType = {
   title: string;
   description: string | string[];
-  technologies: string;
+  technologies?: string;
   link?: string;
 };
 
@@ -21,6 +21,7 @@ export type PositionType = {
 export type StepsType = {
   company: string;
   link: string;
+  location?: string;
   description?: string;
   positions: PositionType[];
 }[];

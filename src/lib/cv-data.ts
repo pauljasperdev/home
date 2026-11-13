@@ -6,8 +6,42 @@ import {
 
 export const experienceSteps: StepsType = [
   {
+    company: "gemhog",
+    link: "https://gemhog.com",
+    location: "Oldenburg, Germany",
+    description:
+      "I founded gemhog, an app that helps retail investors find the podcast episodes that matter for the stocks they follow. \
+       The company is funded by the Lower Saxony founder scholarship.",
+    positions: [
+      {
+        title: "Founder",
+        date: "since 10/2026",
+        projects: [
+          {
+            title: "Founder",
+            description: [
+              "Awarded the Niedersächsisches Gründerstipendium for gemhog, funded until 06/2027",
+              "Building an app that helps retail investors find the podcast episodes relevant to their stocks: trending companies, bullish and bearish arguments, sector deep dives",
+            ],
+          },
+          {
+            title: "Engineering",
+            description: [
+              "Building the product as an installable PWA, marketing site and API on Cloudflare Workers, with auth, subscription payments, email, analytics and error tracking",
+              "AI pipeline that transcribes podcast episodes and uses Claude to detect the companies discussed and find strong takes and deep dives",
+              "Infrastructure as code with SST, CI/CD with preview deployments for each pull request, unit, integration and end-to-end tests",
+            ],
+            technologies:
+              "TypeScript, Effect, React, TanStack, Hono, tRPC, Postgres, Drizzle, Cloudflare Workers, SST, Claude API, AssemblyAI, GitHub Actions",
+          },
+        ],
+      },
+    ],
+  },
+  {
     company: "inpro",
     link: "https://www.inpro.de/",
+    location: "Berlin, Germany",
     description:
       "At inpro, a joint venture between Volkswagen and Siemens, I developed production software and prototypes for industrial applications. \
        I worked on experimental projects with new technologies to assess their viability for deployment at scale. \
@@ -15,7 +49,7 @@ export const experienceSteps: StepsType = [
     positions: [
       {
         title: "Senior Solutions Architect & Full-Stack Engineer",
-        date: "since 01/2025",
+        date: "01/2025 - 09/2026",
         projects: [
           {
             title: "ML Monitoring Infrastructure for Logistics ETA Models",
@@ -121,12 +155,14 @@ export const educationSteps: StepsType = [
           },
           {
             title: "Research Trainee",
-            description: "6-month traineeship at Universidad de Cadiz",
+            description:
+              "6-month traineeship at Universidad de Cadiz for CFD modeling of the Supercritical Anti-Solvent (SAS) process",
             technologies: "Python, Ansys, CFD, Numerical Simulation",
           },
           {
             title: "Research Assistant",
-            description: "At the University of Applied Science Münster",
+            description:
+              "Created a MATLAB course for students at the University of Applied Science Münster",
             technologies: "Python, MATLAB",
           },
         ],
@@ -189,33 +225,11 @@ export const certifications: CertificateType[] = [
 ];
 
 export const professionalSummary =
-  "Senior Solutions Architect & Full-Stack Engineer shipping production-grade industrial software on AWS.\
-   Architecting scalable cloud applications, GenAI solutions and ML infrastructure with TypeScript and Python.\
-   Leading technical initiatives at a major automotive joint venture, taking projects from concept to deployment while mentoring teams.\
-   Active in the local founder scene and building independent products while exploring future venture ideas.\
+  "Founder of gemhog, a podcast discovery app for retail investors, funded by the Lower Saxony founder scholarship.\
+   Solutions Architect & Full-Stack Engineer with 6+ years building production software, GenAI and ML infrastructure in TypeScript and Python.\
+   Previously Senior Solutions Architect at inpro, a Volkswagen and Siemens joint venture, leading projects from concept to deployment and mentoring developers.\
    Certified Scrum Master and Design Thinking Practitioner.";
-export const sideProjects: SideProjectType[] = [
-  {
-    title: "gemhog.com",
-    description: [
-      "We listen to financial podcasts so you don't have to.",
-      "Investment ideas, trends, and expert takes — delivered to your inbox.",
-      "Pairs podcast theses with accessible financial data for evaluation",
-    ],
-    technologies: "Next.js, TypeScript, Effect-TS, SST, Postgres, AWS",
-    link: "https://gemhog.com",
-  },
-  {
-    title: "Real Estate Calculator iOS App",
-    description: [
-      "Building an iOS app that simplifies real estate calculation for investment",
-      "Development stalled",
-    ],
-    technologies:
-      "Expo, TypeScript, React Native, Hono, Drizzle, tRPC, TanStack Query, SST, Nativewind",
-    link: "https://github.com/pauljasperdev/immo",
-  },
-];
+export const sideProjects: SideProjectType[] = [];
 
 export const cvData = {
   experience: experienceSteps,

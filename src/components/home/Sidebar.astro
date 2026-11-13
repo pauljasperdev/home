@@ -1,4 +1,6 @@
 ---
+import { sideProjects } from '~/lib/cv-data';
+
 interface BlogPost {
   slug: string;
   title: string;
@@ -19,7 +21,7 @@ const sections = [
   { label: 'Projects', id: 'projects' },
   { label: 'Certifications', id: 'certifications' },
   { label: 'Education', id: 'education' },
-];
+].filter((s) => s.id !== 'projects' || sideProjects.length > 0);
 ---
 
 <aside class="hidden md:flex w-[200px] shrink-0 h-dvh overflow-y-auto border-r border-edge px-6 py-8 flex-col gap-8 bg-surface sticky top-0">

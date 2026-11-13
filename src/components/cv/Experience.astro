@@ -11,9 +11,9 @@ const { experience } = Astro.props;
   <h2 class="border-b border-black text-lg font-bold uppercase tracking-wider print:text-sm">
     Professional Experience
   </h2>
-  <div class="flex flex-col gap-6 print:gap-4">
+  <div class="flex flex-col gap-6 print:gap-3">
     {experience.map((exp) => (
-      <div class="flex flex-col gap-6 pt-2 print:gap-4">
+      <div class="flex flex-col gap-6 pt-2 print:gap-3 print:pt-0">
         {exp.positions.map((pos) => (
           <div class="avoid-break flex flex-col gap-1 print:gap-1">
             <div class="flex flex-col gap-0.5 print:gap-0">
@@ -41,9 +41,11 @@ const { experience } = Astro.props;
                     exp.company
                   )}
                 </div>
-                <div class="text-xs text-gray-600 print:block print:text-[8px]">
-                  Berlin, Germany
-                </div>
+                {exp.location && (
+                  <div class="text-xs text-gray-600 print:block print:text-[8px]">
+                    {exp.location}
+                  </div>
+                )}
               </div>
             </div>
 

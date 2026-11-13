@@ -80,9 +80,11 @@ function ExperienceSection() {
                       ))}
                     </ul>
                   )}
-                  <div className="text-muted mt-1 font-mono text-[0.78rem] italic">
-                    {proj.technologies}
-                  </div>
+                  {proj.technologies && (
+                    <div className="text-muted mt-1 font-mono text-[0.78rem] italic">
+                      {proj.technologies}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -94,6 +96,7 @@ function ExperienceSection() {
 }
 
 function ProjectsSection() {
+  if (sideProjects.length === 0) return null;
   return (
     <section data-section="projects" className="border-edge border-t p-12">
       <div className="text-dim mb-8 text-xs tracking-[0.15em] uppercase">
